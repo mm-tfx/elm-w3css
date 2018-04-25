@@ -1,6 +1,12 @@
 module Main exposing (..)
 
-import Html exposing (..)
+import Html exposing (Html, div, p, text)
+import Html.Events exposing (onClick)
+import W3css.Button as Button
+import W3css.Colors as Colors
+import W3css.Container as Container
+import W3css.Css as Css
+import W3css.Round as Round
 
 
 main : Program Never Model Msg
@@ -49,8 +55,11 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ Html.text "Hello World" ]
+    Container.container []
+        [ Css.w3css
+        , p [] [ text "Hello World" ]
+        , Button.button [ Button.disabled, Button.red ] [ text "Button" ]
+        ]
 
 
 
