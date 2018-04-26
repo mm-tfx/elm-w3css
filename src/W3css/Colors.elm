@@ -1,16 +1,11 @@
 module W3css.Colors exposing (..)
 
 import Html.Attributes exposing (classList)
+import W3css.Types exposing (..)
 
 
-type Color
-    = Red
-    | Blue
-
-
-red : Color
 red =
-    Red
+    Color Red
 
 
 giveColor : Maybe Color -> String

@@ -1,10 +1,20 @@
-module W3css.Round exposing (RoundType(..), round)
+module W3css.Round exposing (giveRoundType, round, round_)
 
-
-type RoundType
-    = Round
-    | RoundSmall
+import W3css.Types exposing (..)
 
 
 round options =
     { options | round = Just Round }
+
+
+round_ =
+    Rounded Round
+
+
+giveRoundType round =
+    case round of
+        Round ->
+            "w3-round"
+
+        RoundSmall ->
+            "w3-round-small"

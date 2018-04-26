@@ -4,23 +4,14 @@ import Html exposing (Attribute, Html, button)
 import Html.Attributes exposing (class, classList)
 import List exposing (map)
 import String exposing (join)
-import W3css.Colors as Colors exposing (Color(..), giveColor)
-import W3css.Round as Round exposing (RoundType(..))
-
-
-type alias Disabled =
-    Bool
-
-
-type ButtonOptions
-    = Disabled Disabled
-    | Color Colors.Color
-    | Circle Bool
+import W3css.Colors as Colors exposing (giveColor)
+import W3css.Round exposing (giveRoundType)
+import W3css.Types exposing (..)
 
 
 type alias ButtonConfiguration =
     { disabled : Bool
-    , color : Maybe Colors.Color
+    , color : Maybe Color
     , circle : Bool
     , round : Maybe RoundType
     }
@@ -79,16 +70,6 @@ disabled =
     Disabled True
 
 
-red : ButtonOptions
-red =
-    Color Colors.Red
-
-
-blue : ButtonOptions
-blue =
-    Color Colors.Blue
-
-
 circle : ButtonOptions
 circle =
     Circle True
@@ -118,29 +99,64 @@ isCircle circle =
         ""
 
 
-color : Colors.Color -> String
+color : Color -> String
 color color_ =
     case color_ of
-        Colors.Red ->
+        Red ->
             "w3-red"
 
-        Colors.Blue ->
+        Blue ->
             "w3-blue"
 
 
 convert : ButtonOptions -> String
 convert option =
-    case option of
+    case Debug.log "convert:option" option of
         Disabled option ->
             isDisabled option
 
-        Color option ->
+        Colored option ->
             color option
 
         Circle option ->
             isCircle option
 
 
+red =
+    Colored Red
+
+
+disabled_ =
+    Button (Disabled True)
+
+
 button : List ButtonOptions -> List (Html msg) -> Html msg
 button options children =
     Html.button [ applyOptions options ] children
+
+
+button_ : List MainOptions -> List (Html msg) -> Html msg
+button_ options children =
+    Html.button
+        [ applyOptions_ options ]
+        children
+
+
+applyOptions_ options =
+    map convert_ options
+        |> (::) "w3-button"
+        |> join " "
+        |> class
+
+
+convert_ : MainOptions -> String
+convert_ option =
+    case Debug.log "convert_:option" option of
+        Button buttonOptions ->
+            convert buttonOptions
+
+        Color color_ ->
+            color color_
+
+        Rounded round ->
+            giveRoundType round
