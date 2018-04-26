@@ -1,5 +1,10 @@
-module W3css.Round exposing (round)
+module W3css.Round exposing (RoundType(..), round)
 
 
-round =
-    ( "w3-round", True )
+type RoundType
+    = Round
+    | RoundSmall
+
+
+round options =
+    { options | round = Just Round }
