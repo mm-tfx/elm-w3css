@@ -2,6 +2,10 @@ module Main exposing (..)
 
 import Html exposing (Html, div, p, text)
 import Html.Events exposing (onClick)
+import Model exposing (Model)
+import Msg exposing (Msg(..))
+import Update exposing (update)
+import View exposing (view)
 import W3css.Button as Button
 import W3css.Colors as Colors
 import W3css.Container as Container
@@ -20,11 +24,7 @@ main =
 
 
 
--- MODEL
-
-
-type alias Model =
-    Int
+-- UPDATE
 
 
 init : ( Model, Cmd Msg )
@@ -32,34 +32,6 @@ init =
     ( 0
     , Cmd.none
     )
-
-
-
--- UPDATE
-
-
-type Msg
-    = NoOp
-
-
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case msg of
-        NoOp ->
-            model ! []
-
-
-
--- VIEW
-
-
-view : Model -> Html Msg
-view model =
-    Container.container []
-        [ Css.w3css
-        , p [] [ text "Hello World" ]
-        , Button.button [ Button.disabled, Button.red ] [ text "Button" ]
-        ]
 
 
 

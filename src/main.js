@@ -8260,6 +8260,18 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
+
+var _user$project$Msg$NoOp = {ctor: 'NoOp'};
+
+var _user$project$Update$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		return A2(
+			_elm_lang$core$Platform_Cmd_ops['!'],
+			model,
+			{ctor: '[]'});
+	});
+
 var _user$project$W3css_Colors$blue = {ctor: '_Tuple2', _0: 'w3-blue', _1: true};
 var _user$project$W3css_Colors$Red = {ctor: 'Red'};
 var _user$project$W3css_Colors$red = _user$project$W3css_Colors$Red;
@@ -8355,12 +8367,7 @@ var _user$project$W3css_Css$w3css = A3(
 	},
 	{ctor: '[]'});
 
-var _user$project$W3css_Round$round = {ctor: '_Tuple2', _0: 'w3-round', _1: true};
-
-var _user$project$Main$subscriptions = function (model) {
-	return _elm_lang$core$Platform_Sub$none;
-};
-var _user$project$Main$view = function (model) {
+var _user$project$View$view = function (model) {
 	return A2(
 		_user$project$W3css_Container$container,
 		{ctor: '[]'},
@@ -8400,18 +8407,15 @@ var _user$project$Main$view = function (model) {
 			}
 		});
 };
-var _user$project$Main$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		return A2(
-			_elm_lang$core$Platform_Cmd_ops['!'],
-			model,
-			{ctor: '[]'});
-	});
+
+var _user$project$W3css_Round$round = {ctor: '_Tuple2', _0: 'w3-round', _1: true};
+
+var _user$project$Main$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$none;
+};
 var _user$project$Main$init = {ctor: '_Tuple2', _0: 0, _1: _elm_lang$core$Platform_Cmd$none};
 var _user$project$Main$main = _elm_lang$html$Html$program(
-	{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})();
-var _user$project$Main$NoOp = {ctor: 'NoOp'};
+	{init: _user$project$Main$init, view: _user$project$View$view, update: _user$project$Update$update, subscriptions: _user$project$Main$subscriptions})();
 
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
