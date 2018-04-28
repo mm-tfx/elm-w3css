@@ -8272,8 +8272,25 @@ var _user$project$Update$update = F2(
 			{ctor: '[]'});
 	});
 
+var _user$project$W3css_Types$Attribute = function (a) {
+	return {ctor: 'Attribute', _0: a};
+};
+var _user$project$W3css_Types$ClassList = function (a) {
+	return {ctor: 'ClassList', _0: a};
+};
+var _user$project$W3css_Types$Teal = {ctor: 'Teal'};
+var _user$project$W3css_Types$Aqua = {ctor: 'Aqua'};
+var _user$project$W3css_Types$Cyan = {ctor: 'Cyan'};
+var _user$project$W3css_Types$LightBlue = {ctor: 'LightBlue'};
+var _user$project$W3css_Types$Indigo = {ctor: 'Indigo'};
+var _user$project$W3css_Types$DeepPurple = {ctor: 'DeepPurple'};
+var _user$project$W3css_Types$Purple = {ctor: 'Purple'};
+var _user$project$W3css_Types$Pink = {ctor: 'Pink'};
 var _user$project$W3css_Types$Blue = {ctor: 'Blue'};
 var _user$project$W3css_Types$Red = {ctor: 'Red'};
+var _user$project$W3css_Types$Ripple = function (a) {
+	return {ctor: 'Ripple', _0: a};
+};
 var _user$project$W3css_Types$Circle = function (a) {
 	return {ctor: 'Circle', _0: a};
 };
@@ -8295,7 +8312,6 @@ var _user$project$W3css_Types$Color = function (a) {
 var _user$project$W3css_Types$RoundSmall = {ctor: 'RoundSmall'};
 var _user$project$W3css_Types$Round = {ctor: 'Round'};
 
-var _user$project$W3css_Colors$blue = {ctor: '_Tuple2', _0: 'w3-blue', _1: true};
 var _user$project$W3css_Colors$red_ = function (options) {
 	return _elm_lang$core$Native_Utils.update(
 		options,
@@ -8307,16 +8323,63 @@ var _user$project$W3css_Colors$giveColor = function (color) {
 	var _p0 = color;
 	if (_p0.ctor === 'Just') {
 		var _p1 = _p0._0;
-		if (_p1.ctor === 'Red') {
-			return 'w3-red';
-		} else {
-			return 'w3-blue';
+		switch (_p1.ctor) {
+			case 'Red':
+				return 'w3-red';
+			case 'Blue':
+				return 'w3-blue';
+			case 'Pink':
+				return 'w3-pink';
+			case 'Purple':
+				return 'w3-purple';
+			case 'DeepPurple':
+				return 'w3-deep-purple';
+			case 'Indigo':
+				return 'w3-indigo';
+			case 'LightBlue':
+				return 'w3-light-blue';
+			case 'Cyan':
+				return 'w3-cyan';
+			case 'Aqua':
+				return 'w3-aqua';
+			default:
+				return 'w3-teal';
 		}
 	} else {
 		return '';
 	}
 };
+var _user$project$W3css_Colors$giveColor_ = function (color) {
+	var _p2 = color;
+	switch (_p2.ctor) {
+		case 'Red':
+			return 'w3-red';
+		case 'Blue':
+			return 'w3-blue';
+		case 'Pink':
+			return 'w3-pink';
+		case 'Purple':
+			return 'w3-purple';
+		case 'DeepPurple':
+			return 'w3-deep-purple';
+		case 'Indigo':
+			return 'w3-indigo';
+		case 'LightBlue':
+			return 'w3-light-blue';
+		case 'Cyan':
+			return 'w3-cyan';
+		case 'Aqua':
+			return 'w3-aqua';
+		default:
+			return 'w3-teal';
+	}
+};
+var _user$project$W3css_Colors$deepPurple = _user$project$W3css_Types$Color(_user$project$W3css_Types$DeepPurple);
+var _user$project$W3css_Colors$pink = _user$project$W3css_Types$Color(_user$project$W3css_Types$Pink);
+var _user$project$W3css_Colors$blue = _user$project$W3css_Types$Color(_user$project$W3css_Types$Blue);
 var _user$project$W3css_Colors$red = _user$project$W3css_Types$Color(_user$project$W3css_Types$Red);
+var _user$project$W3css_Colors$green = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-green', _1: true});
 
 var _user$project$W3css_Round$giveRoundType = function (round) {
 	var _p0 = round;
@@ -8326,6 +8389,10 @@ var _user$project$W3css_Round$giveRoundType = function (round) {
 		return 'w3-round-small';
 	}
 };
+var _user$project$W3css_Round$roundSmall = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-round-small', _1: true});
+var _user$project$W3css_Round$round2 = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-round', _1: true});
 var _user$project$W3css_Round$round_ = _user$project$W3css_Types$Rounded(_user$project$W3css_Types$Round);
 var _user$project$W3css_Round$round = function (options) {
 	return _elm_lang$core$Native_Utils.update(
@@ -8340,14 +8407,20 @@ var _user$project$W3css_Button$disabled_ = _user$project$W3css_Types$Button(
 var _user$project$W3css_Button$red = _user$project$W3css_Types$Colored(_user$project$W3css_Types$Red);
 var _user$project$W3css_Button$color = function (color_) {
 	var _p0 = color_;
-	if (_p0.ctor === 'Red') {
-		return 'w3-red';
-	} else {
-		return 'w3-blue';
+	switch (_p0.ctor) {
+		case 'Red':
+			return 'w3-red';
+		case 'Blue':
+			return 'w3-blue';
+		default:
+			return '';
 	}
 };
 var _user$project$W3css_Button$isCircle = function (circle) {
 	return circle ? 'w3-circle' : '';
+};
+var _user$project$W3css_Button$isRipple = function (ripple) {
+	return ripple ? 'w3-ripple' : '';
 };
 var _user$project$W3css_Button$isDisabled = function (disabled) {
 	return _elm_lang$core$Native_Utils.eq(disabled, true) ? 'w3-disabled' : '';
@@ -8359,22 +8432,24 @@ var _user$project$W3css_Button$convert = function (option) {
 			return _user$project$W3css_Button$isDisabled(_p1._0);
 		case 'Colored':
 			return _user$project$W3css_Button$color(_p1._0);
-		default:
+		case 'Circle':
 			return _user$project$W3css_Button$isCircle(_p1._0);
+		default:
+			return _user$project$W3css_Button$isRipple(_p1._0);
 	}
 };
-var _user$project$W3css_Button$convert_ = function (option) {
+var _user$project$W3css_Button$convert1 = function (option) {
 	var _p2 = A2(_elm_lang$core$Debug$log, 'convert_:option', option);
 	switch (_p2.ctor) {
 		case 'Button':
 			return _user$project$W3css_Button$convert(_p2._0);
 		case 'Color':
-			return _user$project$W3css_Button$color(_p2._0);
+			return _user$project$W3css_Colors$giveColor_(_p2._0);
 		default:
 			return _user$project$W3css_Round$giveRoundType(_p2._0);
 	}
 };
-var _user$project$W3css_Button$applyOptions_ = function (options) {
+var _user$project$W3css_Button$applyOptions1 = function (options) {
 	return _elm_lang$html$Html_Attributes$class(
 		A2(
 			_elm_lang$core$String$join,
@@ -8385,15 +8460,15 @@ var _user$project$W3css_Button$applyOptions_ = function (options) {
 						return {ctor: '::', _0: x, _1: y};
 					}),
 				'w3-button',
-				A2(_elm_lang$core$List$map, _user$project$W3css_Button$convert_, options))));
+				A2(_elm_lang$core$List$map, _user$project$W3css_Button$convert1, options))));
 };
-var _user$project$W3css_Button$button_ = F2(
+var _user$project$W3css_Button$button1 = F2(
 	function (options, children) {
 		return A2(
 			_elm_lang$html$Html$button,
 			{
 				ctor: '::',
-				_0: _user$project$W3css_Button$applyOptions_(options),
+				_0: _user$project$W3css_Button$applyOptions1(options),
 				_1: {ctor: '[]'}
 			},
 			children);
@@ -8422,6 +8497,10 @@ var _user$project$W3css_Button$button = F2(
 			},
 			children);
 	});
+var _user$project$W3css_Button$circle2 = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-circle', _1: true});
+var _user$project$W3css_Button$circle_ = _user$project$W3css_Types$Button(
+	_user$project$W3css_Types$Circle(true));
 var _user$project$W3css_Button$circle = _user$project$W3css_Types$Circle(true);
 var _user$project$W3css_Button$disabled = _user$project$W3css_Types$Disabled(true);
 var _user$project$W3css_Button$applyConfig = function (config) {
@@ -8469,8 +8548,101 @@ var _user$project$W3css_Button$show = F2(
 			},
 			children);
 	});
+var _user$project$W3css_Button$ripple_ = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-ripple', _1: true});
+var _user$project$W3css_Button$ripple = _user$project$W3css_Types$Button(
+	_user$project$W3css_Types$Ripple(true));
 var _user$project$W3css_Button$initialConfiguration = {disabled: false, color: _elm_lang$core$Maybe$Nothing, circle: false, round: _elm_lang$core$Maybe$Nothing};
 var _user$project$W3css_Button$init = _user$project$W3css_Button$initialConfiguration;
+var _user$project$W3css_Button$buttonClassList = {ctor: '_Tuple2', _0: 'w3-button', _1: true};
+var _user$project$W3css_Button$parseOptions = function (options) {
+	var firstStep = function () {
+		var _p5 = options;
+		if (_p5.ctor === 'ClassList') {
+			return _p5._0;
+		} else {
+			return {ctor: '_Tuple2', _0: '', _1: false};
+		}
+	}();
+	var initialList = {ctor: '[]'};
+	var buttonAdded = {ctor: '::', _0: _user$project$W3css_Button$buttonClassList, _1: initialList};
+	var outputList = {ctor: '::', _0: firstStep, _1: buttonAdded};
+	return {
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$classList(outputList),
+		_1: {ctor: '[]'}
+	};
+};
+var _user$project$W3css_Button$initialList = {
+	ctor: '::',
+	_0: {ctor: '_Tuple2', _0: 'w3-button', _1: true},
+	_1: {ctor: '[]'}
+};
+var _user$project$W3css_Button$disabled3 = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-disabled', _1: true});
+var _user$project$W3css_Button$wafel2 = function (option) {
+	var _p6 = option;
+	if (_p6.ctor === 'Attribute') {
+		return _elm_lang$core$Maybe$Just(_p6._0);
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _user$project$W3css_Button$wafel3 = function (option) {
+	var _p7 = option;
+	if (_p7.ctor === 'Just') {
+		return _elm_lang$core$Maybe$Just(_p7._0);
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _user$project$W3css_Button$isClassList = function (option) {
+	var _p8 = option;
+	if (_p8.ctor === 'ClassList') {
+		return true;
+	} else {
+		return false;
+	}
+};
+var _user$project$W3css_Button$tupleList = function (options) {
+	return A2(_elm_lang$core$List$partition, _user$project$W3css_Button$isClassList, options);
+};
+var _user$project$W3css_Button$wafel = F2(
+	function (option, acc) {
+		var _p9 = option;
+		if (_p9.ctor === 'ClassList') {
+			return {ctor: '::', _0: _p9._0, _1: acc};
+		} else {
+			return {ctor: '[]'};
+		}
+	});
+var _user$project$W3css_Button$parseOptions3 = function (options) {
+	return A3(_elm_lang$core$List$foldl, _user$project$W3css_Button$wafel, _user$project$W3css_Button$initialList, options);
+};
+var _user$project$W3css_Button$something = function (options) {
+	var tuple = _user$project$W3css_Button$tupleList(options);
+	var listToClassList = _user$project$W3css_Button$parseOptions3(
+		_elm_lang$core$Tuple$first(tuple));
+	var listAttr = A2(
+		_elm_lang$core$List$map,
+		_user$project$W3css_Button$wafel2,
+		_elm_lang$core$Tuple$second(tuple));
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$classList(listToClassList),
+			_1: {ctor: '[]'}
+		},
+		A2(_elm_lang$core$List$filterMap, _user$project$W3css_Button$wafel3, listAttr));
+};
+var _user$project$W3css_Button$button3 = F2(
+	function (options, children) {
+		return A2(
+			_elm_lang$html$Html$button,
+			_user$project$W3css_Button$something(options),
+			children);
+	});
 var _user$project$W3css_Button$ButtonConfiguration = F4(
 	function (a, b, c, d) {
 		return {disabled: a, color: b, circle: c, round: d};
@@ -8525,7 +8697,14 @@ var _user$project$View$view = function (model) {
 		{ctor: '[]'},
 		{
 			ctor: '::',
-			_0: _user$project$W3css_Css$w3css,
+			_0: A2(
+				_elm_lang$html$Html$p,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('Hello World'),
+					_1: {ctor: '[]'}
+				}),
 			_1: {
 				ctor: '::',
 				_0: A2(
@@ -8533,7 +8712,22 @@ var _user$project$View$view = function (model) {
 					{ctor: '[]'},
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html$text('Hello World'),
+						_0: A2(
+							_user$project$W3css_Button$button,
+							{
+								ctor: '::',
+								_0: _user$project$W3css_Button$disabled,
+								_1: {
+									ctor: '::',
+									_0: _user$project$W3css_Button$red,
+									_1: {ctor: '[]'}
+								}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('Button'),
+								_1: {ctor: '[]'}
+							}),
 						_1: {ctor: '[]'}
 					}),
 				_1: {
@@ -8547,16 +8741,12 @@ var _user$project$View$view = function (model) {
 								_user$project$W3css_Button$button,
 								{
 									ctor: '::',
-									_0: _user$project$W3css_Button$disabled,
-									_1: {
-										ctor: '::',
-										_0: _user$project$W3css_Button$red,
-										_1: {ctor: '[]'}
-									}
+									_0: _user$project$W3css_Button$circle,
+									_1: {ctor: '[]'}
 								},
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html$text('Button'),
+									_0: _elm_lang$html$Html$text('+'),
 									_1: {ctor: '[]'}
 								}),
 							_1: {ctor: '[]'}
@@ -8569,17 +8759,14 @@ var _user$project$View$view = function (model) {
 							{
 								ctor: '::',
 								_0: A2(
-									_user$project$W3css_Button$button,
+									_user$project$W3css_Button$show,
 									{
 										ctor: '::',
-										_0: _user$project$W3css_Button$circle,
+										_0: _elm_lang$html$Html$text('Button'),
 										_1: {ctor: '[]'}
 									},
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html$text('+'),
-										_1: {ctor: '[]'}
-									}),
+									_user$project$W3css_Round$round(
+										_user$project$W3css_Colors$red_(_user$project$W3css_Button$init))),
 								_1: {ctor: '[]'}
 							}),
 						_1: {
@@ -8590,15 +8777,87 @@ var _user$project$View$view = function (model) {
 								{
 									ctor: '::',
 									_0: A2(
-										_user$project$W3css_Button$show,
+										_user$project$W3css_Button$button1,
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html$text('Button'),
+											_0: _user$project$W3css_Colors$red,
 											_1: {ctor: '[]'}
 										},
-										_user$project$W3css_Round$round(
-											_user$project$W3css_Colors$red_(_user$project$W3css_Button$init))),
-									_1: {ctor: '[]'}
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text('Red'),
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html$text(' '),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_user$project$W3css_Button$button1,
+												{
+													ctor: '::',
+													_0: _user$project$W3css_Colors$blue,
+													_1: {ctor: '[]'}
+												},
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html$text('Blue'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html$text(' '),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_user$project$W3css_Button$button1,
+														{
+															ctor: '::',
+															_0: _user$project$W3css_Colors$pink,
+															_1: {
+																ctor: '::',
+																_0: _user$project$W3css_Button$ripple,
+																_1: {ctor: '[]'}
+															}
+														},
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html$text('Pink'),
+															_1: {ctor: '[]'}
+														}),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html$text(' '),
+														_1: {
+															ctor: '::',
+															_0: A2(
+																_user$project$W3css_Button$button1,
+																{
+																	ctor: '::',
+																	_0: _user$project$W3css_Colors$deepPurple,
+																	_1: {
+																		ctor: '::',
+																		_0: _user$project$W3css_Round$round_,
+																		_1: {
+																			ctor: '::',
+																			_0: _user$project$W3css_Button$disabled_,
+																			_1: {ctor: '[]'}
+																		}
+																	}
+																},
+																{
+																	ctor: '::',
+																	_0: _elm_lang$html$Html$text('Deep Purple'),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {ctor: '[]'}
+														}
+													}
+												}
+											}
+										}
+									}
 								}),
 							_1: {
 								ctor: '::',
@@ -8608,28 +8867,42 @@ var _user$project$View$view = function (model) {
 									{
 										ctor: '::',
 										_0: A2(
-											_user$project$W3css_Button$button_,
+											_user$project$W3css_Button$button3,
 											{
 												ctor: '::',
-												_0: _user$project$W3css_Colors$red,
-												_1: {
-													ctor: '::',
-													_0: _user$project$W3css_Button$disabled_,
-													_1: {
-														ctor: '::',
-														_0: _user$project$W3css_Round$round_,
-														_1: {ctor: '[]'}
-													}
-												}
+												_0: _user$project$W3css_Colors$green,
+												_1: {ctor: '[]'}
 											},
 											{
 												ctor: '::',
-												_0: _elm_lang$html$Html$text('Button'),
+												_0: _elm_lang$html$Html$text('Button3'),
 												_1: {ctor: '[]'}
 											}),
 										_1: {ctor: '[]'}
 									}),
-								_1: {ctor: '[]'}
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$button,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text('Black'),
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$button,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text('Teal'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}
 							}
 						}
 					}

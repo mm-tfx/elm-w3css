@@ -11,6 +11,14 @@ round_ =
     Rounded Round
 
 
+round2 =
+    ClassList ( "w3-round", True )
+
+
+roundSmall =
+    ClassList ( "w3-round-small", True )
+
+
 giveRoundType round =
     case round of
         Round ->
