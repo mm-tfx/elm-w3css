@@ -1,97 +1,43 @@
 module W3css.Button exposing (..)
 
 import Html exposing (Attribute, Html, button)
-import Html.Attributes exposing (class, classList, style)
+import Html.Attributes exposing (class, classList)
 import Html.Events exposing (onClick)
 import List exposing (map)
 import W3css.Types exposing (..)
+import W3css.Utils exposing (applyOptions)
 
 
-style styles =
-    Attribute (Html.Attributes.style styles)
-
-
+onClick : a -> Option a
 onClick msg =
     Attribute (Html.Events.onClick msg)
 
 
+block : Option msg
 block =
     ClassList ( "w3-block", True )
 
 
+button : List (Option msg) -> List (Html msg) -> Html msg
 button options children =
-    Html.button (something options) children
+    Html.button (applyOptions (initialClass :: options)) children
 
 
-parseOptions3 options =
-    List.foldl wafel initialList options
-
-
-wafel option acc =
-    case option of
-        ClassList val ->
-            val :: acc
-
-        Attribute _ ->
-            []
-
-
-something options =
-    let
-        tuple =
-            tupleList options
-
-        listToClassList =
-            parseOptions3 <| Tuple.first tuple
-
-        listAttr =
-            List.map wafel2 (Tuple.second tuple)
-    in
-    [ classList listToClassList ] ++ List.filterMap wafel3 listAttr
-
-
-tupleList options =
-    List.partition isClassList options
-
-
-isClassList option =
-    case option of
-        ClassList _ ->
-            True
-
-        Attribute _ ->
-            False
-
-
-wafel3 option =
-    case option of
-        Just val ->
-            Just val
-
-        Nothing ->
-            Nothing
-
-
-wafel2 option =
-    case option of
-        Attribute val ->
-            Just val
-
-        ClassList _ ->
-            Nothing
-
-
+disabled : Option msg
 disabled =
     ClassList ( "w3-disabled", True )
 
 
-initialList =
-    [ ( "w3-button", True ) ]
+initialClass : Option msg
+initialClass =
+    ClassList ( "w3-button", True )
 
 
+ripple : Option msg
 ripple =
     ClassList ( "w3-ripple", True )
 
 
+circle : Option msg
 circle =
     ClassList ( "w3-circle", True )

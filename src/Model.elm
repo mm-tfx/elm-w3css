@@ -1,5 +1,11 @@
-module Model exposing (Model)
+module Model exposing (Model, ShowModule(..))
+
+
+type ShowModule
+    = ButtonModule
+    | ProgressModule
+    | Colors
 
 
 type alias Model =
-    Int
+    { showModule : ShowModule }
