@@ -1,17 +1,16 @@
-module W3css.Round exposing (giveRoundType, round, round_)
+module W3css.Round
+    exposing
+        ( round
+        , roundLarge
+        , roundSmall
+        , roundXLarge
+        , roundXXLarge
+        )
 
 import W3css.Types exposing (..)
 
 
-round options =
-    { options | round = Just Round }
-
-
-round_ =
-    Rounded Round
-
-
-round2 =
+round =
     ClassList ( "w3-round", True )
 
 
@@ -19,10 +18,13 @@ roundSmall =
     ClassList ( "w3-round-small", True )
 
 
-giveRoundType round =
-    case round of
-        Round ->
-            "w3-round"
+roundLarge =
+    ClassList ( "w3-round-large", True )
 
-        RoundSmall ->
-            "w3-round-small"
+
+roundXLarge =
+    ClassList ( "w3-round-xlarge", True )
+
+
+roundXXLarge =
+    ClassList ( "w3-round-xxlarge", True )
