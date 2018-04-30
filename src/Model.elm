@@ -5,6 +5,7 @@ type ShowModule
     = ButtonModule
     | ProgressModule
     | Colors
+    | BordersModule
 
 
 type alias Model =

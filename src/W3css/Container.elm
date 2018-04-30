@@ -13,6 +13,13 @@ displayContainer attributes children =
 
 div : List (Option msg) -> List (Html msg) -> Html msg
 div options children =
+    let
+        _ =
+            Debug.log "options" options
+
+        _ =
+            Debug.log "children" children
+    in
     Html.div (applyOptions options) children
 
 

@@ -5,6 +5,7 @@ import Model exposing (Model, ShowModule(..))
 import Msg exposing (Msg(..))
 import SyntaxHighlight exposing (elm, gitHub, toBlockHtml, useTheme)
 import W3css.Bar as Bar exposing (bar, barBlock, barItem, sideBar)
+import W3css.Borders as Borders exposing (border, borderRed, borderRed_)
 import W3css.Button as Button exposing (block, button, disabled, ripple)
 import W3css.Colors as Colors exposing (blue, deepPurple, pink, red)
 import W3css.Container as Container exposing (div, panel)
@@ -81,6 +82,13 @@ colorModule =
     ]
 
 
+borderModule : List (Html Msg)
+borderModule =
+    [ Container.div [ Container.panel, Borders.borderRed, Borders.border ] [ Html.p [] [ text "I have borders" ] ]
+    , Container.div [ Container.panel, Borders.borderRed_, Utils.class "w3-round" ] [ Html.p [] [ text "I have borders" ] ]
+    ]
+
+
 view : Model -> Html Msg
 view model =
     Container.div [ Container.container ]
@@ -89,6 +97,7 @@ view model =
             [ Button.button [ Bar.barItem, Button.onClick ShowColors ] [ text "Colors" ]
             , Button.button [ Bar.barItem, Button.onClick ShowButton ] [ text "Button" ]
             , Button.button [ Bar.barItem, Button.onClick ShowProgress ] [ text "Progress" ]
+            , Button.button [ Bar.barItem, Button.onClick ShowBorders ] [ text "Borders" ]
             ]
         , Container.div [ Utils.style [ ( "margin-left", "15%" ) ] ]
             [ Container.div [ Container.container ]
@@ -101,6 +110,9 @@ view model =
 
                     Colors ->
                         colorModule
+
+                    BordersModule ->
+                        borderModule
                 )
             ]
         ]

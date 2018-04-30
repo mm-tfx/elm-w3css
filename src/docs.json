@@ -1,0 +1,36 @@
+[
+  {
+    "name": "W3css.Colors",
+    "comment": " This library provides W3css colors.\n\n\n# Colors\n\n@docs green, blue, red, pink , deepPurple\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "blue",
+        "comment": " Something\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "deepPurple",
+        "comment": " Something\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "green",
+        "comment": " Something\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "pink",
+        "comment": " Something\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "red",
+        "comment": " Something\n",
+        "type": "W3css.Types.Option msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  }
+]

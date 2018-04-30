@@ -18,3 +18,6 @@ update msg model =
 
         ShowColors ->
             { model | showModule = Colors } ! []
+
+        ShowBorders ->
+            { model | showModule = BordersModule } ! []

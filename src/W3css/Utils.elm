@@ -10,6 +10,11 @@ style styles =
     Attribute (Html.Attributes.style styles)
 
 
+class : String -> Option msg
+class className =
+    Attribute (Html.Attributes.class className)
+
+
 initialClass : String -> Option msg
 initialClass className =
     ClassList ( className, True )
@@ -24,6 +29,21 @@ takeClassListValue option =
         Attribute _ ->
             ( "", False )
 
+        Class _ ->
+            ( "", False )
+
+
+fetchClassName option =
+    case option of
+        Class val ->
+            val
+
+        Attribute _ ->
+            ""
+
+        ClassList _ ->
+            ""
+
 
 applyOptions : List (Option msg) -> List (Html.Attribute msg)
 applyOptions options =
@@ -34,10 +54,18 @@ applyOptions options =
         listToClassList =
             List.map takeClassListValue (Tuple.first tuple)
 
+        tuple2 =
+            List.partition isClass (Tuple.second tuple)
+
+        stringList =
+            List.map fetchClassName (Tuple.first tuple2)
+
         listAttr =
             List.map fetchAttributteValue (Tuple.second tuple)
     in
-    [ classList listToClassList ] ++ List.filterMap filterMaybe listAttr
+    [ classList listToClassList ]
+        ++ List.filterMap filterMaybe listAttr
+        ++ [ Html.Attributes.class (String.join " " stringList) ]
 
 
 fetchAttributteValue : Option msg -> Maybe (Attribute msg)
@@ -49,6 +77,9 @@ fetchAttributteValue option =
         ClassList _ ->
             Nothing
 
+        Class _ ->
+            Nothing
+
 
 isClassList : Option msg -> Bool
 isClassList option =
@@ -58,6 +89,21 @@ isClassList option =
 
         Attribute _ ->
             False
+
+        Class _ ->
+            False
+
+
+isClass option =
+    case option of
+        ClassList _ ->
+            False
+
+        Attribute _ ->
+            False
+
+        Class _ ->
+            True
 
 
 filterMaybe : Maybe (Attribute msg) -> Maybe (Attribute msg)

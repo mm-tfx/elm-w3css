@@ -15613,10 +15613,12 @@ var _pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Highlight = {ctor: 'High
 var _user$project$Model$Model = function (a) {
 	return {showModule: a};
 };
+var _user$project$Model$BordersModule = {ctor: 'BordersModule'};
 var _user$project$Model$Colors = {ctor: 'Colors'};
 var _user$project$Model$ProgressModule = {ctor: 'ProgressModule'};
 var _user$project$Model$ButtonModule = {ctor: 'ButtonModule'};
 
+var _user$project$Msg$ShowBorders = {ctor: 'ShowBorders'};
 var _user$project$Msg$ShowColors = {ctor: 'ShowColors'};
 var _user$project$Msg$ShowProgress = {ctor: 'ShowProgress'};
 var _user$project$Msg$ShowButton = {ctor: 'ShowButton'};
@@ -15645,16 +15647,26 @@ var _user$project$Update$update = F2(
 						model,
 						{showModule: _user$project$Model$ProgressModule}),
 					{ctor: '[]'});
-			default:
+			case 'ShowColors':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
 						{showModule: _user$project$Model$Colors}),
 					{ctor: '[]'});
+			default:
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{showModule: _user$project$Model$BordersModule}),
+					{ctor: '[]'});
 		}
 	});
 
+var _user$project$W3css_Types$Class = function (a) {
+	return {ctor: 'Class', _0: a};
+};
 var _user$project$W3css_Types$Attribute = function (a) {
 	return {ctor: 'Attribute', _0: a};
 };
@@ -15670,28 +15682,59 @@ var _user$project$W3css_Utils$filterMaybe = function (option) {
 		return _elm_lang$core$Maybe$Nothing;
 	}
 };
-var _user$project$W3css_Utils$isClassList = function (option) {
+var _user$project$W3css_Utils$isClass = function (option) {
 	var _p1 = option;
-	if (_p1.ctor === 'ClassList') {
-		return true;
-	} else {
-		return false;
+	switch (_p1.ctor) {
+		case 'ClassList':
+			return false;
+		case 'Attribute':
+			return false;
+		default:
+			return true;
+	}
+};
+var _user$project$W3css_Utils$isClassList = function (option) {
+	var _p2 = option;
+	switch (_p2.ctor) {
+		case 'ClassList':
+			return true;
+		case 'Attribute':
+			return false;
+		default:
+			return false;
 	}
 };
 var _user$project$W3css_Utils$fetchAttributteValue = function (option) {
-	var _p2 = option;
-	if (_p2.ctor === 'Attribute') {
-		return _elm_lang$core$Maybe$Just(_p2._0);
-	} else {
-		return _elm_lang$core$Maybe$Nothing;
+	var _p3 = option;
+	switch (_p3.ctor) {
+		case 'Attribute':
+			return _elm_lang$core$Maybe$Just(_p3._0);
+		case 'ClassList':
+			return _elm_lang$core$Maybe$Nothing;
+		default:
+			return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _user$project$W3css_Utils$fetchClassName = function (option) {
+	var _p4 = option;
+	switch (_p4.ctor) {
+		case 'Class':
+			return _p4._0;
+		case 'Attribute':
+			return '';
+		default:
+			return '';
 	}
 };
 var _user$project$W3css_Utils$takeClassListValue = function (option) {
-	var _p3 = option;
-	if (_p3.ctor === 'ClassList') {
-		return _p3._0;
-	} else {
-		return {ctor: '_Tuple2', _0: '', _1: false};
+	var _p5 = option;
+	switch (_p5.ctor) {
+		case 'ClassList':
+			return _p5._0;
+		case 'Attribute':
+			return {ctor: '_Tuple2', _0: '', _1: false};
+		default:
+			return {ctor: '_Tuple2', _0: '', _1: false};
 	}
 };
 var _user$project$W3css_Utils$applyOptions = function (options) {
@@ -15700,6 +15743,14 @@ var _user$project$W3css_Utils$applyOptions = function (options) {
 		_elm_lang$core$List$map,
 		_user$project$W3css_Utils$takeClassListValue,
 		_elm_lang$core$Tuple$first(tuple));
+	var tuple2 = A2(
+		_elm_lang$core$List$partition,
+		_user$project$W3css_Utils$isClass,
+		_elm_lang$core$Tuple$second(tuple));
+	var stringList = A2(
+		_elm_lang$core$List$map,
+		_user$project$W3css_Utils$fetchClassName,
+		_elm_lang$core$Tuple$first(tuple2));
 	var listAttr = A2(
 		_elm_lang$core$List$map,
 		_user$project$W3css_Utils$fetchAttributteValue,
@@ -15711,11 +15762,23 @@ var _user$project$W3css_Utils$applyOptions = function (options) {
 			_0: _elm_lang$html$Html_Attributes$classList(listToClassList),
 			_1: {ctor: '[]'}
 		},
-		A2(_elm_lang$core$List$filterMap, _user$project$W3css_Utils$filterMaybe, listAttr));
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			A2(_elm_lang$core$List$filterMap, _user$project$W3css_Utils$filterMaybe, listAttr),
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class(
+					A2(_elm_lang$core$String$join, ' ', stringList)),
+				_1: {ctor: '[]'}
+			}));
 };
 var _user$project$W3css_Utils$initialClass = function (className) {
 	return _user$project$W3css_Types$ClassList(
 		{ctor: '_Tuple2', _0: className, _1: true});
+};
+var _user$project$W3css_Utils$class = function (className) {
+	return _user$project$W3css_Types$Attribute(
+		_elm_lang$html$Html_Attributes$class(className));
 };
 var _user$project$W3css_Utils$style = function (styles) {
 	return _user$project$W3css_Types$Attribute(
@@ -15730,6 +15793,31 @@ var _user$project$W3css_Bar$sideBar = _user$project$W3css_Types$ClassList(
 	{ctor: '_Tuple2', _0: 'w3-sidebar', _1: true});
 var _user$project$W3css_Bar$bar = _user$project$W3css_Types$ClassList(
 	{ctor: '_Tuple2', _0: 'w3-bar', _1: true});
+
+var _user$project$W3css_Borders$borderColor = function (color) {
+	return _user$project$W3css_Types$ClassList(
+		{
+			ctor: '_Tuple2',
+			_0: A2(
+				_elm_lang$core$String$join,
+				'-',
+				{
+					ctor: '::',
+					_0: 'w3-border',
+					_1: {
+						ctor: '::',
+						_0: color,
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: true
+		});
+};
+var _user$project$W3css_Borders$borderRed_ = _user$project$W3css_Types$Class('w3-border w3-border-red');
+var _user$project$W3css_Borders$borderRed = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-border-red', _1: true});
+var _user$project$W3css_Borders$border = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-border', _1: true});
 
 var _user$project$W3css_Button$circle = _user$project$W3css_Types$ClassList(
 	{ctor: '_Tuple2', _0: 'w3-circle', _1: true});
@@ -15771,6 +15859,8 @@ var _user$project$W3css_Container$container = _user$project$W3css_Types$ClassLis
 	{ctor: '_Tuple2', _0: 'w3-container', _1: true});
 var _user$project$W3css_Container$div = F2(
 	function (options, children) {
+		var _p0 = A2(_elm_lang$core$Debug$log, 'children', children);
+		var _p1 = A2(_elm_lang$core$Debug$log, 'options', options);
 		return A2(
 			_elm_lang$html$Html$div,
 			_user$project$W3css_Utils$applyOptions(options),
@@ -15807,6 +15897,67 @@ var _user$project$W3css_Size$small = _user$project$W3css_Types$ClassList(
 var _user$project$W3css_Size$tiny = _user$project$W3css_Types$ClassList(
 	{ctor: '_Tuple2', _0: 'w3-tiny', _1: true});
 
+var _user$project$View$borderModule = {
+	ctor: '::',
+	_0: A2(
+		_user$project$W3css_Container$div,
+		{
+			ctor: '::',
+			_0: _user$project$W3css_Container$panel,
+			_1: {
+				ctor: '::',
+				_0: _user$project$W3css_Borders$borderRed,
+				_1: {
+					ctor: '::',
+					_0: _user$project$W3css_Borders$border,
+					_1: {ctor: '[]'}
+				}
+			}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$p,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('I have borders'),
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		}),
+	_1: {
+		ctor: '::',
+		_0: A2(
+			_user$project$W3css_Container$div,
+			{
+				ctor: '::',
+				_0: _user$project$W3css_Container$panel,
+				_1: {
+					ctor: '::',
+					_0: _user$project$W3css_Borders$borderRed_,
+					_1: {
+						ctor: '::',
+						_0: _user$project$W3css_Utils$class('w3-round'),
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$p,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('I have borders'),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}),
+		_1: {ctor: '[]'}
+	}
+};
 var _user$project$View$colorModule = {
 	ctor: '::',
 	_0: A2(
@@ -16259,7 +16410,26 @@ var _user$project$View$view = function (model) {
 										_0: _elm_lang$html$Html$text('Progress'),
 										_1: {ctor: '[]'}
 									}),
-								_1: {ctor: '[]'}
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_user$project$W3css_Button$button,
+										{
+											ctor: '::',
+											_0: _user$project$W3css_Bar$barItem,
+											_1: {
+												ctor: '::',
+												_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowBorders),
+												_1: {ctor: '[]'}
+											}
+										},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text('Borders'),
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
 							}
 						}
 					}),
@@ -16300,8 +16470,10 @@ var _user$project$View$view = function (model) {
 													{ctor: '[]'}),
 												_1: {ctor: '[]'}
 											};
-										default:
+										case 'Colors':
 											return _user$project$View$colorModule;
+										default:
+											return _user$project$View$borderModule;
 									}
 								}()),
 							_1: {ctor: '[]'}
