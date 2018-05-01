@@ -1,6 +1,13 @@
-module W3css.Container exposing (container, div, panel)
+module W3css.Container
+    exposing
+        ( container
+        , div
+        , footer
+        , header
+        , panel
+        )
 
-import Html exposing (Attribute, Html, div)
+import Html exposing (Attribute, Html, div, footer, header)
 import Html.Attributes exposing (class)
 import W3css.Types exposing (Option(..))
 import W3css.Utils exposing (applyOptions, initialClass)
@@ -13,14 +20,17 @@ displayContainer attributes children =
 
 div : List (Option msg) -> List (Html msg) -> Html msg
 div options children =
-    let
-        _ =
-            Debug.log "options" options
-
-        _ =
-            Debug.log "children" children
-    in
     Html.div (applyOptions options) children
+
+
+header : List (Option msg) -> List (Html msg) -> Html msg
+header options children =
+    Html.header (applyOptions options) children
+
+
+footer : List (Option msg) -> List (Html msg) -> Html msg
+footer options children =
+    Html.footer (applyOptions options) children
 
 
 container : Option msg

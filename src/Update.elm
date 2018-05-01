@@ -21,3 +21,12 @@ update msg model =
 
         ShowBorders ->
             { model | showModule = BordersModule } ! []
+
+        ShowCards ->
+            { model | showModule = CardsModule } ! []
+
+        ShowTables ->
+            { model | showModule = TablesModule } ! []
+
+        ShowMargins ->
+            { model | showModule = MarginsModule } ! []

@@ -1,5 +1,14 @@
 module W3css.Types exposing (..)
 
+{-| This library provides W3css colors.
+
+
+# Colors
+
+@docs
+
+-}
+
 import Html
 
 

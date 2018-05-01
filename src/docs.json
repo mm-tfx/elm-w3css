@@ -1,33 +1,146 @@
 [
   {
-    "name": "W3css.Colors",
-    "comment": " This library provides W3css colors.\n\n\n# Colors\n\n@docs green, blue, red, pink , deepPurple\n\n",
+    "name": "W3css.Button",
+    "comment": " Button\n\n\n# Functions\n\n@docs button , block, onClick, disabled, ripple, circle, btn\n\n",
     "aliases": [],
     "types": [],
     "values": [
       {
+        "name": "block",
+        "comment": " ",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "btn",
+        "comment": " Creates w3Css button.\nA rectangular button with a shadow hover effect.\nDefault color is black.\n\n    button [][ text \"Button\" ]\n\n",
+        "type": "List (W3css.Types.Option msg) -> List (Html.Html msg) -> Html.Html msg"
+      },
+      {
+        "name": "button",
+        "comment": " Creates w3Css button.\nA rectangular button with a gray hover effect.\nDefault color is light-gray in W3.CSS version 3.\nDefault color is inherited from parent element in version 4.\n\n    button [][ text \"Button\" ]\n\n",
+        "type": "List (W3css.Types.Option msg) -> List (Html.Html msg) -> Html.Html msg"
+      },
+      {
+        "name": "circle",
+        "comment": " ",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "disabled",
+        "comment": " When your `button` shall be disabled\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "onClick",
+        "comment": " ",
+        "type": "a -> W3css.Types.Option a"
+      },
+      {
+        "name": "ripple",
+        "comment": " ",
+        "type": "W3css.Types.Option msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "W3css.Margins",
+    "comment": " Margins\n\n\n# Margins\n\n@docs margin, marginTop, marginRight, marginLeft, marginBottom, section\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "margin",
+        "comment": " Adds a 16px margin to all sides of an element\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "marginBottom",
+        "comment": " Adds a 16px bottom margin to an element\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "marginLeft",
+        "comment": " Adds a 16px left margin to an element\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "marginRight",
+        "comment": " Adds a 16px right margin to an element\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "marginTop",
+        "comment": " Adds a 16px top margin to an element\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "section",
+        "comment": " Adds a 16px top and bottom margin to an element\n",
+        "type": "W3css.Types.Option msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "W3css.Colors",
+    "comment": " This library provides W3css colors.\n\n\n# Colors\n\n@docs aqua, blue, cyan, deepPurple, green, lightBlue, lightGreen, lime, pink, red, teal\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "aqua",
+        "comment": " Color Aqua\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
         "name": "blue",
-        "comment": " Something\n",
+        "comment": " Color Blue\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "cyan",
+        "comment": " Color Cyan\n",
         "type": "W3css.Types.Option msg"
       },
       {
         "name": "deepPurple",
-        "comment": " Something\n",
+        "comment": " Color Deep Purple\n",
         "type": "W3css.Types.Option msg"
       },
       {
         "name": "green",
-        "comment": " Something\n",
+        "comment": " Color Green\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "lightBlue",
+        "comment": " Color Light Blue\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "lightGreen",
+        "comment": " Color Light Green\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "lime",
+        "comment": " Color Lime\n",
         "type": "W3css.Types.Option msg"
       },
       {
         "name": "pink",
-        "comment": " Something\n",
+        "comment": " Color Pink\n",
         "type": "W3css.Types.Option msg"
       },
       {
         "name": "red",
-        "comment": " Something\n",
+        "comment": " Color Red\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "teal",
+        "comment": " Color Teal\n",
         "type": "W3css.Types.Option msg"
       }
     ],

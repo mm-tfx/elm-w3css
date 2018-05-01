@@ -7,3 +7,6 @@ type Msg
     | ShowProgress
     | ShowColors
     | ShowBorders
+    | ShowCards
+    | ShowTables
+    | ShowMargins

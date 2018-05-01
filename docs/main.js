@@ -15613,11 +15613,17 @@ var _pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Highlight = {ctor: 'High
 var _user$project$Model$Model = function (a) {
 	return {showModule: a};
 };
+var _user$project$Model$MarginsModule = {ctor: 'MarginsModule'};
+var _user$project$Model$TablesModule = {ctor: 'TablesModule'};
+var _user$project$Model$CardsModule = {ctor: 'CardsModule'};
 var _user$project$Model$BordersModule = {ctor: 'BordersModule'};
 var _user$project$Model$Colors = {ctor: 'Colors'};
 var _user$project$Model$ProgressModule = {ctor: 'ProgressModule'};
 var _user$project$Model$ButtonModule = {ctor: 'ButtonModule'};
 
+var _user$project$Msg$ShowMargins = {ctor: 'ShowMargins'};
+var _user$project$Msg$ShowTables = {ctor: 'ShowTables'};
+var _user$project$Msg$ShowCards = {ctor: 'ShowCards'};
 var _user$project$Msg$ShowBorders = {ctor: 'ShowBorders'};
 var _user$project$Msg$ShowColors = {ctor: 'ShowColors'};
 var _user$project$Msg$ShowProgress = {ctor: 'ShowProgress'};
@@ -15654,12 +15660,33 @@ var _user$project$Update$update = F2(
 						model,
 						{showModule: _user$project$Model$Colors}),
 					{ctor: '[]'});
-			default:
+			case 'ShowBorders':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
 						{showModule: _user$project$Model$BordersModule}),
+					{ctor: '[]'});
+			case 'ShowCards':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{showModule: _user$project$Model$CardsModule}),
+					{ctor: '[]'});
+			case 'ShowTables':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{showModule: _user$project$Model$TablesModule}),
+					{ctor: '[]'});
+			default:
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{showModule: _user$project$Model$MarginsModule}),
 					{ctor: '[]'});
 		}
 	});
@@ -15794,28 +15821,19 @@ var _user$project$W3css_Bar$sideBar = _user$project$W3css_Types$ClassList(
 var _user$project$W3css_Bar$bar = _user$project$W3css_Types$ClassList(
 	{ctor: '_Tuple2', _0: 'w3-bar', _1: true});
 
-var _user$project$W3css_Borders$borderColor = function (color) {
-	return _user$project$W3css_Types$ClassList(
-		{
-			ctor: '_Tuple2',
-			_0: A2(
-				_elm_lang$core$String$join,
-				'-',
-				{
-					ctor: '::',
-					_0: 'w3-border',
-					_1: {
-						ctor: '::',
-						_0: color,
-						_1: {ctor: '[]'}
-					}
-				}),
-			_1: true
-		});
-};
-var _user$project$W3css_Borders$borderRed_ = _user$project$W3css_Types$Class('w3-border w3-border-red');
+var _user$project$W3css_Borders$borderWithRed = _user$project$W3css_Types$Class('w3-border w3-border-red');
 var _user$project$W3css_Borders$borderRed = _user$project$W3css_Types$ClassList(
 	{ctor: '_Tuple2', _0: 'w3-border-red', _1: true});
+var _user$project$W3css_Borders$noBorder = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-border-0', _1: true});
+var _user$project$W3css_Borders$borderRight = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-border-right', _1: true});
+var _user$project$W3css_Borders$borderLeft = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-border-left', _1: true});
+var _user$project$W3css_Borders$borderBottom = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-border-bottom', _1: true});
+var _user$project$W3css_Borders$borderTop = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-border-top', _1: true});
 var _user$project$W3css_Borders$border = _user$project$W3css_Types$ClassList(
 	{ctor: '_Tuple2', _0: 'w3-border', _1: true});
 
@@ -15827,6 +15845,19 @@ var _user$project$W3css_Button$initialClass = _user$project$W3css_Types$ClassLis
 	{ctor: '_Tuple2', _0: 'w3-button', _1: true});
 var _user$project$W3css_Button$disabled = _user$project$W3css_Types$ClassList(
 	{ctor: '_Tuple2', _0: 'w3-disabled', _1: true});
+var _user$project$W3css_Button$btn = F2(
+	function (options, children) {
+		return A2(
+			_elm_lang$html$Html$button,
+			_user$project$W3css_Utils$applyOptions(
+				{
+					ctor: '::',
+					_0: _user$project$W3css_Types$ClassList(
+						{ctor: '_Tuple2', _0: 'w3-btn', _1: true}),
+					_1: options
+				}),
+			children);
+	});
 var _user$project$W3css_Button$button = F2(
 	function (options, children) {
 		return A2(
@@ -15842,6 +15873,25 @@ var _user$project$W3css_Button$onClick = function (msg) {
 		_elm_lang$html$Html_Events$onClick(msg));
 };
 
+var _user$project$W3css_Cards$card4 = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-card-4', _1: true});
+var _user$project$W3css_Cards$card2 = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-card-2', _1: true});
+var _user$project$W3css_Cards$card = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-card', _1: true});
+
+var _user$project$W3css_Colors$lime = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-lime', _1: true});
+var _user$project$W3css_Colors$lightGreen = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-light-green', _1: true});
+var _user$project$W3css_Colors$teal = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-teal', _1: true});
+var _user$project$W3css_Colors$aqua = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-aqua', _1: true});
+var _user$project$W3css_Colors$cyan = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-cyan', _1: true});
+var _user$project$W3css_Colors$lightBlue = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-light-blue', _1: true});
 var _user$project$W3css_Colors$deepPurple = _user$project$W3css_Types$ClassList(
 	{ctor: '_Tuple2', _0: 'w3-deep-purple', _1: true});
 var _user$project$W3css_Colors$pink = _user$project$W3css_Types$ClassList(
@@ -15857,10 +15907,22 @@ var _user$project$W3css_Container$panel = _user$project$W3css_Types$ClassList(
 	{ctor: '_Tuple2', _0: 'w3-panel', _1: true});
 var _user$project$W3css_Container$container = _user$project$W3css_Types$ClassList(
 	{ctor: '_Tuple2', _0: 'w3-container', _1: true});
+var _user$project$W3css_Container$footer = F2(
+	function (options, children) {
+		return A2(
+			_elm_lang$html$Html$footer,
+			_user$project$W3css_Utils$applyOptions(options),
+			children);
+	});
+var _user$project$W3css_Container$header = F2(
+	function (options, children) {
+		return A2(
+			_elm_lang$html$Html$header,
+			_user$project$W3css_Utils$applyOptions(options),
+			children);
+	});
 var _user$project$W3css_Container$div = F2(
 	function (options, children) {
-		var _p0 = A2(_elm_lang$core$Debug$log, 'children', children);
-		var _p1 = A2(_elm_lang$core$Debug$log, 'options', options);
 		return A2(
 			_elm_lang$html$Html$div,
 			_user$project$W3css_Utils$applyOptions(options),
@@ -15881,6 +15943,19 @@ var _user$project$W3css_Container$displayContainer = F2(
 			children);
 	});
 
+var _user$project$W3css_Margins$section = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-margin-top', _1: true});
+var _user$project$W3css_Margins$marginBottom = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-margin-bottom', _1: true});
+var _user$project$W3css_Margins$marginLeft = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-margin-left', _1: true});
+var _user$project$W3css_Margins$marginRight = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-margin-right', _1: true});
+var _user$project$W3css_Margins$marginTop = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-margin-top', _1: true});
+var _user$project$W3css_Margins$margin = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-margin', _1: true});
+
 var _user$project$W3css_Round$roundXXLarge = _user$project$W3css_Types$ClassList(
 	{ctor: '_Tuple2', _0: 'w3-round-xxlarge', _1: true});
 var _user$project$W3css_Round$roundXLarge = _user$project$W3css_Types$ClassList(
@@ -15892,26 +15967,220 @@ var _user$project$W3css_Round$roundSmall = _user$project$W3css_Types$ClassList(
 var _user$project$W3css_Round$round = _user$project$W3css_Types$ClassList(
 	{ctor: '_Tuple2', _0: 'w3-round', _1: true});
 
+var _user$project$W3css_Size$xxxLarge = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-xxxlarge', _1: true});
+var _user$project$W3css_Size$xxLarge = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-xxlarge', _1: true});
+var _user$project$W3css_Size$xLarge = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-xlarge', _1: true});
 var _user$project$W3css_Size$small = _user$project$W3css_Types$ClassList(
 	{ctor: '_Tuple2', _0: 'w3-small', _1: true});
 var _user$project$W3css_Size$tiny = _user$project$W3css_Types$ClassList(
 	{ctor: '_Tuple2', _0: 'w3-tiny', _1: true});
 
-var _user$project$View$borderModule = {
-	ctor: '::',
-	_0: A2(
+var _user$project$W3css_Tables$bordered = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-bordered', _1: true});
+var _user$project$W3css_Tables$striped = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-striped', _1: true});
+var _user$project$W3css_Tables$initialClass = _user$project$W3css_Types$ClassList(
+	{ctor: '_Tuple2', _0: 'w3-table', _1: true});
+var _user$project$W3css_Tables$table = F2(
+	function (options, children) {
+		return A2(
+			_elm_lang$html$Html$table,
+			_user$project$W3css_Utils$applyOptions(
+				{ctor: '::', _0: _user$project$W3css_Tables$initialClass, _1: options}),
+			children);
+	});
+
+var _user$project$View$simpleTable = 'Tables.table [ option ]\n    [ tbody []\n        [ tr []\n            [ th [] [ text \"First Name\" ]\n            , th [] [ text \"Last Name\" ]\n            , th [] [ text \"Points\" ]\n            ]\n        , tr []\n            [ td [] [ text \"Jill\" ]\n            , td [] [ text \"Smith\" ]\n            , td [] [ text \"50\" ]\n            ]\n        , tr []\n            [ td [] [ text \"Eve\" ]\n            , td [] [ text \"Jackson\" ]\n            , td [] [ text \"94\" ]\n            ]\n        , tr []\n            [ td [] [ text \"Adam\" ]\n            , td [] [ text \"Johnson\" ]\n            , td [] [ text \"67\" ]\n            ]\n        ]\n    ]\n';
+var _user$project$View$sampleTable = function (option) {
+	return A2(
+		_user$project$W3css_Tables$table,
+		{
+			ctor: '::',
+			_0: option,
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$tbody,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$tr,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$th,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('First Name'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$th,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('Last Name'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$th,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text('Points'),
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$tr,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$td,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('Jill'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$td,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text('Smith'),
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$td,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text('50'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$tr,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$td,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text('Eve'),
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$td,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text('Jackson'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$td,
+												{ctor: '[]'},
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html$text('94'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										}
+									}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$tr,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$td,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text('Adam'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$td,
+												{ctor: '[]'},
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html$text('Johnson'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$td,
+													{ctor: '[]'},
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html$text('67'),
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											}
+										}
+									}),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$View$headerModule = function (title) {
+	return A2(
 		_user$project$W3css_Container$div,
 		{
 			ctor: '::',
-			_0: _user$project$W3css_Container$panel,
+			_0: _user$project$W3css_Utils$class('w3-allerta'),
 			_1: {
 				ctor: '::',
-				_0: _user$project$W3css_Borders$borderRed,
-				_1: {
-					ctor: '::',
-					_0: _user$project$W3css_Borders$border,
-					_1: {ctor: '[]'}
-				}
+				_0: _user$project$W3css_Size$xLarge,
+				_1: {ctor: '[]'}
 			}
 		},
 		{
@@ -15921,24 +16190,28 @@ var _user$project$View$borderModule = {
 				{ctor: '[]'},
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html$text('I have borders'),
+					_0: _elm_lang$html$Html$text(title),
 					_1: {ctor: '[]'}
 				}),
 			_1: {ctor: '[]'}
-		}),
+		});
+};
+var _user$project$View$colorModule = {
+	ctor: '::',
+	_0: _user$project$View$headerModule('Colors'),
 	_1: {
 		ctor: '::',
 		_0: A2(
 			_user$project$W3css_Container$div,
 			{
 				ctor: '::',
-				_0: _user$project$W3css_Container$panel,
+				_0: _user$project$W3css_Colors$aqua,
 				_1: {
 					ctor: '::',
-					_0: _user$project$W3css_Borders$borderRed_,
+					_0: _user$project$W3css_Container$panel,
 					_1: {
 						ctor: '::',
-						_0: _user$project$W3css_Utils$class('w3-round'),
+						_0: _user$project$W3css_Utils$class('w3-half'),
 						_1: {ctor: '[]'}
 					}
 				}
@@ -15950,65 +16223,276 @@ var _user$project$View$borderModule = {
 					{ctor: '[]'},
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html$text('I have borders'),
+						_0: _elm_lang$html$Html$text('Aqua'),
 						_1: {ctor: '[]'}
 					}),
 				_1: {ctor: '[]'}
 			}),
-		_1: {ctor: '[]'}
-	}
-};
-var _user$project$View$colorModule = {
-	ctor: '::',
-	_0: A2(
-		_user$project$W3css_Container$div,
-		{
-			ctor: '::',
-			_0: _user$project$W3css_Colors$blue,
-			_1: {
-				ctor: '::',
-				_0: _user$project$W3css_Container$panel,
-				_1: {ctor: '[]'}
-			}
-		},
-		{
+		_1: {
 			ctor: '::',
 			_0: A2(
-				_elm_lang$html$Html$p,
-				{ctor: '[]'},
+				_user$project$W3css_Container$div,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html$text('Blue'),
+					_0: _user$project$W3css_Colors$blue,
+					_1: {
+						ctor: '::',
+						_0: _user$project$W3css_Container$panel,
+						_1: {
+							ctor: '::',
+							_0: _user$project$W3css_Utils$class('w3-half'),
+							_1: {ctor: '[]'}
+						}
+					}
+				},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$p,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('Blue'),
+							_1: {ctor: '[]'}
+						}),
 					_1: {ctor: '[]'}
 				}),
-			_1: {ctor: '[]'}
-		}),
-	_1: {
-		ctor: '::',
-		_0: A2(
-			_user$project$W3css_Container$div,
-			{
-				ctor: '::',
-				_0: _user$project$W3css_Colors$red,
-				_1: {
-					ctor: '::',
-					_0: _user$project$W3css_Container$panel,
-					_1: {ctor: '[]'}
-				}
-			},
-			{
+			_1: {
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$p,
-					{ctor: '[]'},
+					_user$project$W3css_Container$div,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html$text('Red'),
+						_0: _user$project$W3css_Colors$cyan,
+						_1: {
+							ctor: '::',
+							_0: _user$project$W3css_Container$panel,
+							_1: {ctor: '[]'}
+						}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$p,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('Cyan'),
+								_1: {ctor: '[]'}
+							}),
 						_1: {ctor: '[]'}
 					}),
-				_1: {ctor: '[]'}
-			}),
-		_1: {ctor: '[]'}
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_user$project$W3css_Container$div,
+						{
+							ctor: '::',
+							_0: _user$project$W3css_Colors$deepPurple,
+							_1: {
+								ctor: '::',
+								_0: _user$project$W3css_Container$panel,
+								_1: {ctor: '[]'}
+							}
+						},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$p,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Deep Purple'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_user$project$W3css_Container$div,
+							{
+								ctor: '::',
+								_0: _user$project$W3css_Colors$green,
+								_1: {
+									ctor: '::',
+									_0: _user$project$W3css_Container$panel,
+									_1: {ctor: '[]'}
+								}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('Green'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_user$project$W3css_Container$div,
+								{
+									ctor: '::',
+									_0: _user$project$W3css_Colors$lightBlue,
+									_1: {
+										ctor: '::',
+										_0: _user$project$W3css_Container$panel,
+										_1: {ctor: '[]'}
+									}
+								},
+								{
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$p,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text('Light Blue'),
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_user$project$W3css_Container$div,
+									{
+										ctor: '::',
+										_0: _user$project$W3css_Colors$lightGreen,
+										_1: {
+											ctor: '::',
+											_0: _user$project$W3css_Container$panel,
+											_1: {ctor: '[]'}
+										}
+									},
+									{
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$p,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text('Light Green'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_user$project$W3css_Container$div,
+										{
+											ctor: '::',
+											_0: _user$project$W3css_Colors$lime,
+											_1: {
+												ctor: '::',
+												_0: _user$project$W3css_Container$panel,
+												_1: {ctor: '[]'}
+											}
+										},
+										{
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$p,
+												{ctor: '[]'},
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html$text('Lime'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_user$project$W3css_Container$div,
+											{
+												ctor: '::',
+												_0: _user$project$W3css_Colors$pink,
+												_1: {
+													ctor: '::',
+													_0: _user$project$W3css_Container$panel,
+													_1: {ctor: '[]'}
+												}
+											},
+											{
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$p,
+													{ctor: '[]'},
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html$text('Pink'),
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_user$project$W3css_Container$div,
+												{
+													ctor: '::',
+													_0: _user$project$W3css_Colors$red,
+													_1: {
+														ctor: '::',
+														_0: _user$project$W3css_Container$panel,
+														_1: {ctor: '[]'}
+													}
+												},
+												{
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$p,
+														{ctor: '[]'},
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html$text('Red'),
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_user$project$W3css_Container$div,
+													{
+														ctor: '::',
+														_0: _user$project$W3css_Colors$teal,
+														_1: {
+															ctor: '::',
+															_0: _user$project$W3css_Container$panel,
+															_1: {ctor: '[]'}
+														}
+													},
+													{
+														ctor: '::',
+														_0: A2(
+															_elm_lang$html$Html$p,
+															{ctor: '[]'},
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html$text('Teal'),
+																_1: {ctor: '[]'}
+															}),
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 };
 var _user$project$View$showCode = function (inputCode) {
@@ -16035,11 +16519,404 @@ var _user$project$View$showCode = function (inputCode) {
 				_elm_lang$core$Maybe$Just(1)),
 			_pablohirafuji$elm_syntax_highlight$SyntaxHighlight$elm(inputCode)));
 };
-var _user$project$View$roundButtonCode = 'Button.button [ Round.roundSmall, Colors.green ] [ text \"Round Small\" ]\n, Button.button [ Round.round, Colors.green ] [ text \"Round\" ]\n, Button.button [ Round.roundLarge, Colors.green ] [ text \"Round Large\" ]\n, Button.button [ Round.roundXLarge, Colors.green ] [ text \"Round XLarge\" ]\n, Button.button [ Round.roundXXLarge, Colors.green ] [ text \"Round XXLarge\" ]\n';
-var _user$project$View$buttonCode = 'Button.button [Colors.green] [text \"Green\"]\n, Button.button [ Colors.red ] [ text \"Red\" ]\n, Button.button [ Colors.blue ] [ text \"Blue\" ]\n, Button.button [ Colors.deepPurple ] [ text \"Deep Purple\" ]\n  ';
+var _user$project$View$codeExample = function (code) {
+	return A2(
+		_user$project$W3css_Container$div,
+		{
+			ctor: '::',
+			_0: _user$project$W3css_Container$panel,
+			_1: {
+				ctor: '::',
+				_0: _user$project$W3css_Utils$class('w3-card w3-light-grey'),
+				_1: {ctor: '[]'}
+			}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$h3,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('Example'),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_user$project$W3css_Container$div,
+					{
+						ctor: '::',
+						_0: _user$project$W3css_Utils$class('w3-code'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _user$project$View$showCode(code),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}
+		});
+};
+var _user$project$View$borderModule = {
+	ctor: '::',
+	_0: _user$project$View$headerModule('Borders'),
+	_1: {
+		ctor: '::',
+		_0: A2(
+			_user$project$W3css_Container$div,
+			{
+				ctor: '::',
+				_0: _user$project$W3css_Container$panel,
+				_1: {
+					ctor: '::',
+					_0: _user$project$W3css_Borders$border,
+					_1: {
+						ctor: '::',
+						_0: _user$project$W3css_Borders$border,
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$p,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('I have borders'),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}),
+		_1: {
+			ctor: '::',
+			_0: _user$project$View$codeExample('Container.div [ Container.panel, Borders.border, Borders.border ] [ Html.p [] [ text \"I have borders\" ] ]'),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_user$project$W3css_Container$div,
+					{
+						ctor: '::',
+						_0: _user$project$W3css_Container$panel,
+						_1: {
+							ctor: '::',
+							_0: _user$project$W3css_Borders$borderTop,
+							_1: {ctor: '[]'}
+						}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$p,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('I have Top border'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: _user$project$View$codeExample('Container.div [ Container.panel, Borders.borderTop ] [ Html.p [] [ text \"I have Top border\" ] ]'),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_user$project$W3css_Container$div,
+							{
+								ctor: '::',
+								_0: _user$project$W3css_Container$panel,
+								_1: {
+									ctor: '::',
+									_0: _user$project$W3css_Borders$borderBottom,
+									_1: {ctor: '[]'}
+								}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('I have Border bottom'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: _user$project$View$codeExample('Container.div [ Container.panel, Borders.borderBottom ] [ Html.p [] [ text \"I have Border bottom\" ] ]'),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+var _user$project$View$cardsModule = {
+	ctor: '::',
+	_0: _user$project$View$headerModule('Cards'),
+	_1: {
+		ctor: '::',
+		_0: A2(
+			_user$project$W3css_Container$div,
+			{
+				ctor: '::',
+				_0: _user$project$W3css_Container$panel,
+				_1: {
+					ctor: '::',
+					_0: _user$project$W3css_Cards$card,
+					_1: {ctor: '[]'}
+				}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$p,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('w3-card'),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_user$project$W3css_Container$div,
+				{
+					ctor: '::',
+					_0: _user$project$W3css_Container$panel,
+					_1: {
+						ctor: '::',
+						_0: _user$project$W3css_Cards$card2,
+						_1: {ctor: '[]'}
+					}
+				},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$p,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('w3-card-2'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_user$project$W3css_Container$div,
+					{
+						ctor: '::',
+						_0: _user$project$W3css_Container$panel,
+						_1: {
+							ctor: '::',
+							_0: _user$project$W3css_Cards$card4,
+							_1: {ctor: '[]'}
+						}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$p,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('w3-card-4'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: _user$project$View$codeExample('Container.div [ Container.panel, Cards.card ] [ p [] [ text \"w3-card\" ] ]\nContainer.div [ Container.panel, Cards.card2 ] [ p [] [ text \"w3-card-2\" ] ]\nContainer.div [ Container.panel, Cards.card4 ] [ p [] [ text \"w3-card-4\" ] ]\n'),
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	}
+};
+var _user$project$View$marginsModule = {
+	ctor: '::',
+	_0: _user$project$View$headerModule('Margins'),
+	_1: {
+		ctor: '::',
+		_0: A2(
+			_user$project$W3css_Container$div,
+			{
+				ctor: '::',
+				_0: _user$project$W3css_Borders$border,
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_user$project$W3css_Container$div,
+					{
+						ctor: '::',
+						_0: _user$project$W3css_Container$container,
+						_1: {
+							ctor: '::',
+							_0: _user$project$W3css_Margins$marginTop,
+							_1: {
+								ctor: '::',
+								_0: _user$project$W3css_Colors$green,
+								_1: {ctor: '[]'}
+							}
+						}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$p,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('The w3-margin-top class adds a 16px top margin to an element.'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}),
+		_1: {
+			ctor: '::',
+			_0: _user$project$View$codeExample('Container.div [ Borders.border ]\n        [ Container.div [ Container.container Margins.marginTop Colors.green ]\n            [ p [] [ text \"The w3-margin-top class adds a 16px top margin to an element.\" ]\n            ]\n        ]'),
+			_1: {ctor: '[]'}
+		}
+	}
+};
+var _user$project$View$codeExampleExtendable = function (code) {
+	return A2(
+		_user$project$W3css_Container$div,
+		{
+			ctor: '::',
+			_0: _user$project$W3css_Container$panel,
+			_1: {
+				ctor: '::',
+				_0: _user$project$W3css_Utils$class('w3-card w3-light-grey'),
+				_1: {ctor: '[]'}
+			}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$h3,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('Example'),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_user$project$W3css_Container$div,
+					{
+						ctor: '::',
+						_0: _user$project$W3css_Utils$class('w3-code'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _user$project$View$showCode(code),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_user$project$W3css_Button$btn,
+						{
+							ctor: '::',
+							_0: _user$project$W3css_Colors$green,
+							_1: {
+								ctor: '::',
+								_0: _user$project$W3css_Button$onClick(_user$project$Msg$NoOp),
+								_1: {
+									ctor: '::',
+									_0: _user$project$W3css_Margins$marginBottom,
+									_1: {ctor: '[]'}
+								}
+							}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('Full Code'),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$i,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$class('fa fa-arrow-circle-down'),
+										_1: {ctor: '[]'}
+									},
+									{ctor: '[]'}),
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {ctor: '[]'}
+				}
+			}
+		});
+};
+var _user$project$View$tablesModule = {
+	ctor: '::',
+	_0: _user$project$View$headerModule('Tables'),
+	_1: {
+		ctor: '::',
+		_0: A2(
+			_user$project$W3css_Container$div,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: _user$project$View$sampleTable(
+					_user$project$W3css_Utils$class('')),
+				_1: {ctor: '[]'}
+			}),
+		_1: {
+			ctor: '::',
+			_0: _user$project$View$codeExampleExtendable(_user$project$View$simpleTable),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_user$project$W3css_Container$div,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _user$project$View$sampleTable(_user$project$W3css_Tables$striped),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_user$project$W3css_Container$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _user$project$View$sampleTable(_user$project$W3css_Tables$bordered),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	}
+};
+var _user$project$View$roundButtonCode = 'Button.button [ Round.roundSmall, Colors.green ] [ text \"Round Small\" ]\nButton.button [ Round.round, Colors.green ] [ text \"Round\" ]\nButton.button [ Round.roundLarge, Colors.green ] [ text \"Round Large\" ]\nButton.button [ Round.roundXLarge, Colors.green ] [ text \"Round XLarge\" ]\nButton.button [ Round.roundXXLarge, Colors.green ] [ text \"Round XXLarge\" ]\n';
+var _user$project$View$buttonCode = 'Button.button [Colors.green] [text \"Green\"]\nButton.button [ Colors.red ] [ text \"Red\" ]\nButton.button [ Colors.blue ] [ text \"Blue\" ]\nButton.button [ Colors.deepPurple ] [ text \"Deep Purple\" ]\n';
 var _user$project$View$buttonModule = {
 	ctor: '::',
-	_0: _user$project$View$showCode(_user$project$View$buttonCode),
+	_0: _user$project$View$headerModule('Button'),
 	_1: {
 		ctor: '::',
 		_0: A2(
@@ -16120,149 +16997,73 @@ var _user$project$View$buttonModule = {
 			}),
 		_1: {
 			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$p,
-				{ctor: '[]'},
-				{
-					ctor: '::',
-					_0: A2(
-						_user$project$W3css_Button$button,
-						{
-							ctor: '::',
-							_0: _user$project$W3css_Button$circle,
-							_1: {
-								ctor: '::',
-								_0: _user$project$W3css_Colors$blue,
-								_1: {ctor: '[]'}
-							}
-						},
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html$text('+'),
-							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
-				}),
+			_0: _user$project$View$codeExample(_user$project$View$buttonCode),
 			_1: {
 				ctor: '::',
-				_0: _user$project$View$showCode(_user$project$View$roundButtonCode),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$p,
-						{ctor: '[]'},
-						{
+				_0: A2(
+					_elm_lang$html$Html$p,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(
+							_user$project$W3css_Button$button,
+							{
+								ctor: '::',
+								_0: _user$project$W3css_Button$circle,
+								_1: {
+									ctor: '::',
+									_0: _user$project$W3css_Colors$blue,
+									_1: {ctor: '[]'}
+								}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('+'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
 							ctor: '::',
 							_0: A2(
 								_user$project$W3css_Button$button,
 								{
 									ctor: '::',
-									_0: _user$project$W3css_Round$roundSmall,
+									_0: _user$project$W3css_Button$circle,
 									_1: {
 										ctor: '::',
-										_0: _user$project$W3css_Colors$green,
+										_0: _user$project$W3css_Colors$red,
 										_1: {ctor: '[]'}
 									}
 								},
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html$text('Round Small'),
+									_0: _elm_lang$html$Html$text('+'),
 									_1: {ctor: '[]'}
 								}),
 							_1: {
 								ctor: '::',
-								_0: _elm_lang$html$Html$text(' '),
-								_1: {
-									ctor: '::',
-									_0: A2(
-										_user$project$W3css_Button$button,
-										{
-											ctor: '::',
-											_0: _user$project$W3css_Round$round,
-											_1: {
-												ctor: '::',
-												_0: _user$project$W3css_Colors$green,
-												_1: {ctor: '[]'}
-											}
-										},
-										{
-											ctor: '::',
-											_0: _elm_lang$html$Html$text('Round'),
-											_1: {ctor: '[]'}
-										}),
-									_1: {
+								_0: A2(
+									_user$project$W3css_Button$button,
+									{
 										ctor: '::',
-										_0: _elm_lang$html$Html$text(' '),
+										_0: _user$project$W3css_Button$circle,
 										_1: {
 											ctor: '::',
-											_0: A2(
-												_user$project$W3css_Button$button,
-												{
-													ctor: '::',
-													_0: _user$project$W3css_Round$roundLarge,
-													_1: {
-														ctor: '::',
-														_0: _user$project$W3css_Colors$green,
-														_1: {ctor: '[]'}
-													}
-												},
-												{
-													ctor: '::',
-													_0: _elm_lang$html$Html$text('Round Large'),
-													_1: {ctor: '[]'}
-												}),
-											_1: {
-												ctor: '::',
-												_0: _elm_lang$html$Html$text(' '),
-												_1: {
-													ctor: '::',
-													_0: A2(
-														_user$project$W3css_Button$button,
-														{
-															ctor: '::',
-															_0: _user$project$W3css_Round$roundXLarge,
-															_1: {
-																ctor: '::',
-																_0: _user$project$W3css_Colors$green,
-																_1: {ctor: '[]'}
-															}
-														},
-														{
-															ctor: '::',
-															_0: _elm_lang$html$Html$text('Round XLarge'),
-															_1: {ctor: '[]'}
-														}),
-													_1: {
-														ctor: '::',
-														_0: _elm_lang$html$Html$text(' '),
-														_1: {
-															ctor: '::',
-															_0: A2(
-																_user$project$W3css_Button$button,
-																{
-																	ctor: '::',
-																	_0: _user$project$W3css_Round$roundXXLarge,
-																	_1: {
-																		ctor: '::',
-																		_0: _user$project$W3css_Colors$green,
-																		_1: {ctor: '[]'}
-																	}
-																},
-																{
-																	ctor: '::',
-																	_0: _elm_lang$html$Html$text('Round XXLarge'),
-																	_1: {ctor: '[]'}
-																}),
-															_1: {ctor: '[]'}
-														}
-													}
-												}
-											}
+											_0: _user$project$W3css_Colors$lime,
+											_1: {ctor: '[]'}
 										}
-									}
-								}
+									},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('+'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
 							}
-						}),
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: _user$project$View$codeExample('Button.button [ Button.circle, Colors.blue ] [ text \"+\" ]\nButton.button [ Button.circle, Colors.red ] [ text \"+\" ]\nButton.button [ Button.circle, Colors.lime ] [ text \"+\" ]\n'),
 					_1: {
 						ctor: '::',
 						_0: A2(
@@ -16274,49 +17075,182 @@ var _user$project$View$buttonModule = {
 									_user$project$W3css_Button$button,
 									{
 										ctor: '::',
-										_0: _user$project$W3css_Colors$red,
+										_0: _user$project$W3css_Round$roundSmall,
 										_1: {
 											ctor: '::',
-											_0: _user$project$W3css_Size$tiny,
+											_0: _user$project$W3css_Colors$green,
 											_1: {ctor: '[]'}
 										}
 									},
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html$text('Tiny'),
+										_0: _elm_lang$html$Html$text('Round Small'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
 									ctor: '::',
-									_0: A2(
-										_user$project$W3css_Button$button,
-										{
-											ctor: '::',
-											_0: _user$project$W3css_Colors$pink,
-											_1: {
+									_0: _elm_lang$html$Html$text(' '),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_user$project$W3css_Button$button,
+											{
 												ctor: '::',
-												_0: _user$project$W3css_Button$block,
+												_0: _user$project$W3css_Round$round,
 												_1: {
 													ctor: '::',
-													_0: _user$project$W3css_Utils$style(
-														{
-															ctor: '::',
-															_0: {ctor: '_Tuple2', _0: 'width', _1: '70%'},
-															_1: {ctor: '[]'}
-														}),
+													_0: _user$project$W3css_Colors$green,
 													_1: {ctor: '[]'}
 												}
-											}
-										},
-										{
+											},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text('Round'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
 											ctor: '::',
-											_0: _elm_lang$html$Html$text('Block Button'),
-											_1: {ctor: '[]'}
-										}),
-									_1: {ctor: '[]'}
+											_0: _elm_lang$html$Html$text(' '),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_user$project$W3css_Button$button,
+													{
+														ctor: '::',
+														_0: _user$project$W3css_Round$roundLarge,
+														_1: {
+															ctor: '::',
+															_0: _user$project$W3css_Colors$green,
+															_1: {ctor: '[]'}
+														}
+													},
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html$text('Round Large'),
+														_1: {ctor: '[]'}
+													}),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html$text(' '),
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_user$project$W3css_Button$button,
+															{
+																ctor: '::',
+																_0: _user$project$W3css_Round$roundXLarge,
+																_1: {
+																	ctor: '::',
+																	_0: _user$project$W3css_Colors$green,
+																	_1: {ctor: '[]'}
+																}
+															},
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html$text('Round XLarge'),
+																_1: {ctor: '[]'}
+															}),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html$text(' '),
+															_1: {
+																ctor: '::',
+																_0: A2(
+																	_user$project$W3css_Button$button,
+																	{
+																		ctor: '::',
+																		_0: _user$project$W3css_Round$roundXXLarge,
+																		_1: {
+																			ctor: '::',
+																			_0: _user$project$W3css_Colors$green,
+																			_1: {ctor: '[]'}
+																		}
+																	},
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$html$Html$text('Round XXLarge'),
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {ctor: '[]'}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
 								}
 							}),
-						_1: {ctor: '[]'}
+						_1: {
+							ctor: '::',
+							_0: _user$project$View$codeExample(_user$project$View$roundButtonCode),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: A2(
+											_user$project$W3css_Button$button,
+											{
+												ctor: '::',
+												_0: _user$project$W3css_Colors$red,
+												_1: {
+													ctor: '::',
+													_0: _user$project$W3css_Size$tiny,
+													_1: {ctor: '[]'}
+												}
+											},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text('Tiny'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: _user$project$View$codeExample('Button.button [ Colors.red, Size.tiny ] [ text \"Tiny\" ]'),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$p,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: A2(
+													_user$project$W3css_Button$button,
+													{
+														ctor: '::',
+														_0: _user$project$W3css_Colors$pink,
+														_1: {
+															ctor: '::',
+															_0: _user$project$W3css_Button$block,
+															_1: {
+																ctor: '::',
+																_0: _user$project$W3css_Utils$style(
+																	{
+																		ctor: '::',
+																		_0: {ctor: '_Tuple2', _0: 'width', _1: '70%'},
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {ctor: '[]'}
+															}
+														}
+													},
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html$text('Block Button'),
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
 					}
 				}
 			}
@@ -16428,7 +17362,64 @@ var _user$project$View$view = function (model) {
 											_0: _elm_lang$html$Html$text('Borders'),
 											_1: {ctor: '[]'}
 										}),
-									_1: {ctor: '[]'}
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_user$project$W3css_Button$button,
+											{
+												ctor: '::',
+												_0: _user$project$W3css_Bar$barItem,
+												_1: {
+													ctor: '::',
+													_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowCards),
+													_1: {ctor: '[]'}
+												}
+											},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text('Cards'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_user$project$W3css_Button$button,
+												{
+													ctor: '::',
+													_0: _user$project$W3css_Bar$barItem,
+													_1: {
+														ctor: '::',
+														_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowTables),
+														_1: {ctor: '[]'}
+													}
+												},
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html$text('Tables'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_user$project$W3css_Button$button,
+													{
+														ctor: '::',
+														_0: _user$project$W3css_Bar$barItem,
+														_1: {
+															ctor: '::',
+															_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowMargins),
+															_1: {ctor: '[]'}
+														}
+													},
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html$text('Margins'),
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
 								}
 							}
 						}
@@ -16472,8 +17463,14 @@ var _user$project$View$view = function (model) {
 											};
 										case 'Colors':
 											return _user$project$View$colorModule;
-										default:
+										case 'BordersModule':
 											return _user$project$View$borderModule;
+										case 'CardsModule':
+											return _user$project$View$cardsModule;
+										case 'TablesModule':
+											return _user$project$View$tablesModule;
+										default:
+											return _user$project$View$marginsModule;
 									}
 								}()),
 							_1: {ctor: '[]'}

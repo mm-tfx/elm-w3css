@@ -6,6 +6,9 @@ type ShowModule
     | ProgressModule
     | Colors
     | BordersModule
+    | CardsModule
+    | TablesModule
+    | MarginsModule
 
 
 type alias Model =
