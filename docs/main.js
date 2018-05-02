@@ -15610,9 +15610,10 @@ var _pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Del = {ctor: 'Del'};
 var _pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Add = {ctor: 'Add'};
 var _pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Highlight = {ctor: 'Highlight'};
 
-var _user$project$Model$Model = function (a) {
-	return {showModule: a};
-};
+var _user$project$Model$Model = F2(
+	function (a, b) {
+		return {showModule: a, showMenu: b};
+	});
 var _user$project$Model$MarginsModule = {ctor: 'MarginsModule'};
 var _user$project$Model$TablesModule = {ctor: 'TablesModule'};
 var _user$project$Model$CardsModule = {ctor: 'CardsModule'};
@@ -15621,6 +15622,8 @@ var _user$project$Model$Colors = {ctor: 'Colors'};
 var _user$project$Model$ProgressModule = {ctor: 'ProgressModule'};
 var _user$project$Model$ButtonModule = {ctor: 'ButtonModule'};
 
+var _user$project$Msg$ShowMenu = {ctor: 'ShowMenu'};
+var _user$project$Msg$CloseMenu = {ctor: 'CloseMenu'};
 var _user$project$Msg$ShowMargins = {ctor: 'ShowMargins'};
 var _user$project$Msg$ShowTables = {ctor: 'ShowTables'};
 var _user$project$Msg$ShowCards = {ctor: 'ShowCards'};
@@ -15681,12 +15684,26 @@ var _user$project$Update$update = F2(
 						model,
 						{showModule: _user$project$Model$TablesModule}),
 					{ctor: '[]'});
-			default:
+			case 'ShowMargins':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
 						{showModule: _user$project$Model$MarginsModule}),
+					{ctor: '[]'});
+			case 'CloseMenu':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{showMenu: false}),
+					{ctor: '[]'});
+			default:
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{showMenu: true}),
 					{ctor: '[]'});
 		}
 	});
@@ -15993,6 +16010,19 @@ var _user$project$W3css_Tables$table = F2(
 			children);
 	});
 
+var _user$project$View$showMenu = function (value) {
+	return value ? _user$project$W3css_Utils$style(
+		{
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'display', _1: 'block'},
+			_1: {ctor: '[]'}
+		}) : _user$project$W3css_Utils$style(
+		{
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'display', _1: 'none'},
+			_1: {ctor: '[]'}
+		});
+};
 var _user$project$View$simpleTable = 'Tables.table [ option ]\n    [ tbody []\n        [ tr []\n            [ th [] [ text \"First Name\" ]\n            , th [] [ text \"Last Name\" ]\n            , th [] [ text \"Points\" ]\n            ]\n        , tr []\n            [ td [] [ text \"Jill\" ]\n            , td [] [ text \"Smith\" ]\n            , td [] [ text \"50\" ]\n            ]\n        , tr []\n            [ td [] [ text \"Eve\" ]\n            , td [] [ text \"Jackson\" ]\n            , td [] [ text \"94\" ]\n            ]\n        , tr []\n            [ td [] [ text \"Adam\" ]\n            , td [] [ text \"Johnson\" ]\n            , td [] [ text \"67\" ]\n            ]\n        ]\n    ]\n';
 var _user$project$View$sampleTable = function (option) {
 	return A2(
@@ -16850,7 +16880,7 @@ var _user$project$View$codeExampleExtendable = function (code) {
 						},
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html$text('Full Code'),
+							_0: _elm_lang$html$Html$text('Full Code '),
 							_1: {
 								ctor: '::',
 								_0: A2(
@@ -17274,19 +17304,31 @@ var _user$project$View$view = function (model) {
 					_user$project$W3css_Container$div,
 					{
 						ctor: '::',
-						_0: _user$project$W3css_Bar$sideBar,
+						_0: _user$project$View$showMenu(model.showMenu),
 						_1: {
 							ctor: '::',
-							_0: _user$project$W3css_Bar$barBlock,
+							_0: _user$project$W3css_Bar$sideBar,
 							_1: {
 								ctor: '::',
-								_0: _user$project$W3css_Utils$style(
-									{
+								_0: _user$project$W3css_Bar$barBlock,
+								_1: {
+									ctor: '::',
+									_0: _user$project$W3css_Utils$style(
+										{
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 'width', _1: '15%'},
+											_1: {ctor: '[]'}
+										}),
+									_1: {
 										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'width', _1: '15%'},
-										_1: {ctor: '[]'}
-									}),
-								_1: {ctor: '[]'}
+										_0: _user$project$W3css_Utils$class('w3-collapse'),
+										_1: {
+											ctor: '::',
+											_0: _user$project$W3css_Cards$card,
+											_1: {ctor: '[]'}
+										}
+									}
+								}
 							}
 						}
 					},
@@ -17299,13 +17341,17 @@ var _user$project$View$view = function (model) {
 								_0: _user$project$W3css_Bar$barItem,
 								_1: {
 									ctor: '::',
-									_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowColors),
-									_1: {ctor: '[]'}
+									_0: _user$project$W3css_Utils$class('w3-hide-large'),
+									_1: {
+										ctor: '::',
+										_0: _user$project$W3css_Button$onClick(_user$project$Msg$CloseMenu),
+										_1: {ctor: '[]'}
+									}
 								}
 							},
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text('Colors'),
+								_0: _elm_lang$html$Html$text('Close'),
 								_1: {ctor: '[]'}
 							}),
 						_1: {
@@ -17317,13 +17363,13 @@ var _user$project$View$view = function (model) {
 									_0: _user$project$W3css_Bar$barItem,
 									_1: {
 										ctor: '::',
-										_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowButton),
+										_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowColors),
 										_1: {ctor: '[]'}
 									}
 								},
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html$text('Button'),
+									_0: _elm_lang$html$Html$text('Colors'),
 									_1: {ctor: '[]'}
 								}),
 							_1: {
@@ -17335,13 +17381,13 @@ var _user$project$View$view = function (model) {
 										_0: _user$project$W3css_Bar$barItem,
 										_1: {
 											ctor: '::',
-											_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowProgress),
+											_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowButton),
 											_1: {ctor: '[]'}
 										}
 									},
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html$text('Progress'),
+										_0: _elm_lang$html$Html$text('Button'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
@@ -17353,13 +17399,13 @@ var _user$project$View$view = function (model) {
 											_0: _user$project$W3css_Bar$barItem,
 											_1: {
 												ctor: '::',
-												_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowBorders),
+												_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowProgress),
 												_1: {ctor: '[]'}
 											}
 										},
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html$text('Borders'),
+											_0: _elm_lang$html$Html$text('Progress'),
 											_1: {ctor: '[]'}
 										}),
 									_1: {
@@ -17371,13 +17417,13 @@ var _user$project$View$view = function (model) {
 												_0: _user$project$W3css_Bar$barItem,
 												_1: {
 													ctor: '::',
-													_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowCards),
+													_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowBorders),
 													_1: {ctor: '[]'}
 												}
 											},
 											{
 												ctor: '::',
-												_0: _elm_lang$html$Html$text('Cards'),
+												_0: _elm_lang$html$Html$text('Borders'),
 												_1: {ctor: '[]'}
 											}),
 										_1: {
@@ -17389,13 +17435,13 @@ var _user$project$View$view = function (model) {
 													_0: _user$project$W3css_Bar$barItem,
 													_1: {
 														ctor: '::',
-														_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowTables),
+														_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowCards),
 														_1: {ctor: '[]'}
 													}
 												},
 												{
 													ctor: '::',
-													_0: _elm_lang$html$Html$text('Tables'),
+													_0: _elm_lang$html$Html$text('Cards'),
 													_1: {ctor: '[]'}
 												}),
 											_1: {
@@ -17407,16 +17453,35 @@ var _user$project$View$view = function (model) {
 														_0: _user$project$W3css_Bar$barItem,
 														_1: {
 															ctor: '::',
-															_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowMargins),
+															_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowTables),
 															_1: {ctor: '[]'}
 														}
 													},
 													{
 														ctor: '::',
-														_0: _elm_lang$html$Html$text('Margins'),
+														_0: _elm_lang$html$Html$text('Tables'),
 														_1: {ctor: '[]'}
 													}),
-												_1: {ctor: '[]'}
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_user$project$W3css_Button$button,
+														{
+															ctor: '::',
+															_0: _user$project$W3css_Bar$barItem,
+															_1: {
+																ctor: '::',
+																_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowMargins),
+																_1: {ctor: '[]'}
+															}
+														},
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html$text('Margins'),
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												}
 											}
 										}
 									}
@@ -17427,55 +17492,70 @@ var _user$project$View$view = function (model) {
 				_1: {
 					ctor: '::',
 					_0: A2(
-						_user$project$W3css_Container$div,
+						_user$project$W3css_Button$button,
 						{
 							ctor: '::',
-							_0: _user$project$W3css_Utils$style(
-								{
-									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '15%'},
-									_1: {ctor: '[]'}
-								}),
+							_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowMenu),
 							_1: {ctor: '[]'}
 						},
 						{
 							ctor: '::',
-							_0: A2(
-								_user$project$W3css_Container$div,
-								{
-									ctor: '::',
-									_0: _user$project$W3css_Container$container,
-									_1: {ctor: '[]'}
-								},
-								function () {
-									var _p0 = model.showModule;
-									switch (_p0.ctor) {
-										case 'ButtonModule':
-											return _user$project$View$buttonModule;
-										case 'ProgressModule':
-											return {
-												ctor: '::',
-												_0: A2(
-													_elm_lang$html$Html$div,
-													{ctor: '[]'},
-													{ctor: '[]'}),
-												_1: {ctor: '[]'}
-											};
-										case 'Colors':
-											return _user$project$View$colorModule;
-										case 'BordersModule':
-											return _user$project$View$borderModule;
-										case 'CardsModule':
-											return _user$project$View$cardsModule;
-										case 'TablesModule':
-											return _user$project$View$tablesModule;
-										default:
-											return _user$project$View$marginsModule;
-									}
-								}()),
+							_0: _elm_lang$html$Html$text('Open'),
 							_1: {ctor: '[]'}
 						}),
-					_1: {ctor: '[]'}
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_user$project$W3css_Container$div,
+							{
+								ctor: '::',
+								_0: _user$project$W3css_Utils$style(
+									{
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '15%'},
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_user$project$W3css_Container$div,
+									{
+										ctor: '::',
+										_0: _user$project$W3css_Container$container,
+										_1: {ctor: '[]'}
+									},
+									function () {
+										var _p0 = model.showModule;
+										switch (_p0.ctor) {
+											case 'ButtonModule':
+												return _user$project$View$buttonModule;
+											case 'ProgressModule':
+												return {
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$div,
+														{ctor: '[]'},
+														{ctor: '[]'}),
+													_1: {ctor: '[]'}
+												};
+											case 'Colors':
+												return _user$project$View$colorModule;
+											case 'BordersModule':
+												return _user$project$View$borderModule;
+											case 'CardsModule':
+												return _user$project$View$cardsModule;
+											case 'TablesModule':
+												return _user$project$View$tablesModule;
+											default:
+												return _user$project$View$marginsModule;
+										}
+									}()),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
 				}
 			}
 		});
@@ -17486,7 +17566,7 @@ var _user$project$Main$subscriptions = function (model) {
 };
 var _user$project$Main$init = A2(
 	_elm_lang$core$Platform_Cmd_ops['!'],
-	{showModule: _user$project$Model$ButtonModule},
+	{showModule: _user$project$Model$ButtonModule, showMenu: false},
 	{
 		ctor: '::',
 		_0: _elm_lang$core$Platform_Cmd$none,

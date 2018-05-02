@@ -23,7 +23,10 @@ main =
 
 init : ( Model, Cmd Msg )
 init =
-    { showModule = ButtonModule } ! [ Cmd.none ]
+    { showModule = ButtonModule
+    , showMenu = False
+    }
+        ! [ Cmd.none ]
 
 
 

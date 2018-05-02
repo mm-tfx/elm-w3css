@@ -10,3 +10,5 @@ type Msg
     | ShowCards
     | ShowTables
     | ShowMargins
+    | CloseMenu
+    | ShowMenu

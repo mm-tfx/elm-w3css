@@ -244,12 +244,20 @@ marginsModule =
     ]
 
 
+showMenu value =
+    if value then
+        Utils.style [ ( "display", "block" ) ]
+    else
+        Utils.style [ ( "display", "none" ) ]
+
+
 view : Model -> Html Msg
 view model =
     Container.div [ Container.container ]
         [ useTheme gitHub
-        , Container.div [ Bar.sideBar, Bar.barBlock, Utils.style [ ( "width", "15%" ) ] ]
-            [ Button.button [ Bar.barItem, Button.onClick ShowColors ] [ text "Colors" ]
+        , Container.div [ showMenu model.showMenu, Bar.sideBar, Bar.barBlock, Utils.style [ ( "width", "15%" ) ], Utils.class "w3-collapse", Cards.card ]
+            [ Button.button [ Bar.barItem, Utils.class "w3-hide-large", Button.onClick CloseMenu ] [ text "Close" ]
+            , Button.button [ Bar.barItem, Button.onClick ShowColors ] [ text "Colors" ]
             , Button.button [ Bar.barItem, Button.onClick ShowButton ] [ text "Button" ]
             , Button.button [ Bar.barItem, Button.onClick ShowProgress ] [ text "Progress" ]
             , Button.button [ Bar.barItem, Button.onClick ShowBorders ] [ text "Borders" ]
@@ -257,6 +265,7 @@ view model =
             , Button.button [ Bar.barItem, Button.onClick ShowTables ] [ text "Tables" ]
             , Button.button [ Bar.barItem, Button.onClick ShowMargins ] [ text "Margins" ]
             ]
+        , Button.button [ Button.onClick ShowMenu ] [ text "Menu" ]
         , Container.div [ Utils.style [ ( "margin-left", "15%" ) ] ]
             [ Container.div [ Container.container ]
                 (case model.showModule of

@@ -12,4 +12,6 @@ type ShowModule
 
 
 type alias Model =
-    { showModule : ShowModule }
+    { showModule : ShowModule
+    , showMenu : Bool
+    }

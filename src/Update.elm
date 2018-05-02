@@ -30,3 +30,9 @@ update msg model =
 
         ShowMargins ->
             { model | showModule = MarginsModule } ! []
+
+        CloseMenu ->
+            { model | showMenu = False } ! []
+
+        ShowMenu ->
+            { model | showMenu = True } ! []
