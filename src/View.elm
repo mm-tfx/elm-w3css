@@ -5,6 +5,7 @@ import Html.Attributes exposing (class)
 import Model exposing (Model, ShowModule(..))
 import Msg exposing (Msg(..))
 import SyntaxHighlight exposing (elm, gitHub, oneDark, toBlockHtml, useTheme)
+import W3css.Animations as Animations exposing (..)
 import W3css.Bar as Bar exposing (bar, barBlock, barItem, sideBar)
 import W3css.Borders as Borders exposing (border, borderBottom, borderLeft, borderRed, borderRight, borderTop, borderWithRed)
 import W3css.Button as Button exposing (block, btn, button, disabled, ripple)
@@ -24,10 +25,13 @@ import W3css.Colors as Colors
         , teal
         )
 import W3css.Container as Container exposing (div, panel)
+import W3css.Css as Css exposing (w3css)
+import W3css.Headers as Headers exposing (..)
 import W3css.Margins as Margins exposing (marginBottom)
 import W3css.Round as Round exposing (round, roundLarge, roundSmall, roundXLarge, roundXXLarge)
 import W3css.Size as Size exposing (..)
 import W3css.Tables as Tables exposing (..)
+import W3css.Types as Types exposing (Option(..))
 import W3css.Utils as Utils exposing (style)
 
 
@@ -146,6 +150,7 @@ borderModule =
     ]
 
 
+headerModule : String -> Html msg
 headerModule title =
     Container.div [ Utils.class "w3-allerta", Size.xLarge ] [ p [] [ text title ] ]
 
@@ -165,6 +170,7 @@ Container.div [ Container.panel, Cards.card4 ] [ p [] [ text "w3-card-4" ] ]
     ]
 
 
+sampleTable : Option msg -> Html msg
 sampleTable option =
     Tables.table [ option ]
         [ tbody []
@@ -192,6 +198,7 @@ sampleTable option =
         ]
 
 
+simpleTable : String
 simpleTable =
     """Tables.table [ option ]
     [ tbody []
@@ -220,6 +227,7 @@ simpleTable =
 """
 
 
+tablesModule : List (Html Msg)
 tablesModule =
     [ headerModule "Tables"
     , div [] [ sampleTable <| Utils.class "" ]
@@ -229,6 +237,7 @@ tablesModule =
     ]
 
 
+marginsModule : List (Html Msg)
 marginsModule =
     [ headerModule "Margins"
     , Container.div [ Borders.border ]
@@ -244,6 +253,7 @@ marginsModule =
     ]
 
 
+showMenu : Bool -> Option msg
 showMenu value =
     if value then
         Utils.style [ ( "display", "block" ) ]
@@ -251,10 +261,49 @@ showMenu value =
         Utils.style [ ( "display", "none" ) ]
 
 
+accordionModule : Bool -> List (Html Msg)
+accordionModule showAccordion =
+    let
+        showAccordion_ =
+            if showAccordion then
+                Utils.class "w3-show"
+            else
+                Utils.class "w3-hide"
+    in
+    [ Button.btn [ Button.block, Colors.black, Button.onClick OpenAccordion ] [ text "Open Section" ]
+    , Container.div [ Container.container, showAccordion_, Animations.animateLeft ]
+        [ Html.h4 [] [ text "Section 1" ]
+        , Html.p [] [ text "Some Text" ]
+        ]
+    , Container.div [ Borders.border ]
+        [ Html.p [] [ text "Something after accordion" ]
+        ]
+    ]
+
+
+animationModule : List (Html Msg)
+animationModule =
+    [ headerModule "Animations"
+    , Container.div [ Container.container ]
+        [ Headers.h1 [ Animations.animateTop ] [ text "Animation is fun" ]
+        ]
+    , Container.div [ Container.container ]
+        [ Headers.h1 [ Animations.animateBottom ] [ text "Animation is fun" ]
+        ]
+    , Container.div [ Container.container ]
+        [ Headers.h1 [ Animations.animateLeft ] [ text "Animation is fun" ]
+        ]
+    , Container.div [ Container.container ]
+        [ Headers.h1 [ Animations.animateRight ] [ text "Animation is fun" ]
+        ]
+    ]
+
+
 view : Model -> Html Msg
 view model =
     Container.div [ Container.container ]
-        [ useTheme gitHub
+        [ Css.w3css
+        , useTheme gitHub
         , Container.div [ showMenu model.showMenu, Bar.sideBar, Bar.barBlock, Utils.style [ ( "width", "15%" ) ], Utils.class "w3-collapse", Cards.card ]
             [ Button.button [ Bar.barItem, Utils.class "w3-hide-large", Button.onClick CloseMenu ] [ text "Close" ]
             , Button.button [ Bar.barItem, Button.onClick ShowColors ] [ text "Colors" ]
@@ -264,6 +313,8 @@ view model =
             , Button.button [ Bar.barItem, Button.onClick ShowCards ] [ text "Cards" ]
             , Button.button [ Bar.barItem, Button.onClick ShowTables ] [ text "Tables" ]
             , Button.button [ Bar.barItem, Button.onClick ShowMargins ] [ text "Margins" ]
+            , Button.button [ Bar.barItem, Button.onClick ShowAccordion ] [ text "Accordion" ]
+            , Button.button [ Bar.barItem, Button.onClick ShowAnimations ] [ text "Animations" ]
             ]
         , Button.button [ Button.onClick ShowMenu ] [ text "Menu" ]
         , Container.div [ Utils.style [ ( "margin-left", "15%" ) ] ]
@@ -289,6 +340,12 @@ view model =
 
                     MarginsModule ->
                         marginsModule
+
+                    AccordionModule ->
+                        accordionModule model.showAccordion
+
+                    AnimationsModule ->
+                        animationModule
                 )
             ]
         ]

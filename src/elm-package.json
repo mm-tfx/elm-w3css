@@ -6,12 +6,16 @@
     "source-directories": [
         "."
     ],
-    "exposed-modules": ["W3css.Colors"
-      , "W3css.Button"
-      , "W3css.Margins"],
+    "exposed-modules": [
+        "W3css.Colors",
+        "W3css.Button",
+        "W3css.Margins",
+        "W3css.Animations"
+    ],
     "dependencies": {
         "elm-lang/core": "5.1.1 <= v < 6.0.0",
         "elm-lang/html": "2.0.0 <= v < 3.0.0",
+        "elm-lang/navigation": "2.1.0 <= v < 3.0.0",
         "pablohirafuji/elm-syntax-highlight": "2.1.0 <= v < 3.0.0"
     },
     "elm-version": "0.18.0 <= v < 0.19.0"

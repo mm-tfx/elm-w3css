@@ -1,5 +1,7 @@
 module Msg exposing (Msg(..))
 
+import Navigation
+
 
 type Msg
     = NoOp
@@ -12,3 +14,7 @@ type Msg
     | ShowMargins
     | CloseMenu
     | ShowMenu
+    | ShowAccordion
+    | OpenAccordion
+    | UrlChange Navigation.Location
+    | ShowAnimations

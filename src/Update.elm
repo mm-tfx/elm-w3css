@@ -2,6 +2,7 @@ module Update exposing (update)
 
 import Model exposing (Model, ShowModule(..))
 import Msg exposing (Msg(..))
+import Navigation
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -11,13 +12,13 @@ update msg model =
             model ! []
 
         ShowButton ->
-            { model | showModule = ButtonModule } ! []
+            { model | showModule = ButtonModule } ! [ Navigation.newUrl "/buttons" ]
 
         ShowProgress ->
-            { model | showModule = ProgressModule } ! []
+            { model | showModule = ProgressModule } ! [ Navigation.newUrl "/progress" ]
 
         ShowColors ->
-            { model | showModule = Colors } ! []
+            { model | showModule = Colors } ! [ Navigation.newUrl "/colors" ]
 
         ShowBorders ->
             { model | showModule = BordersModule } ! []
@@ -36,3 +37,19 @@ update msg model =
 
         ShowMenu ->
             { model | showMenu = True } ! []
+
+        ShowAccordion ->
+            { model | showModule = AccordionModule } ! []
+
+        OpenAccordion ->
+            { model | showAccordion = not model.showAccordion } ! []
+
+        ShowAnimations ->
+            { model | showModule = AnimationsModule } ! []
+
+        UrlChange location ->
+            let
+                _ =
+                    Debug.log "location" location
+            in
+            model ! []

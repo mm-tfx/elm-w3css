@@ -1,15 +1,15 @@
 module Main exposing (..)
 
-import Html exposing (Html, div, p, text)
 import Model exposing (Model, ShowModule(..))
 import Msg exposing (Msg(..))
+import Navigation
 import Update exposing (update)
 import View exposing (view)
 
 
 main : Program Never Model Msg
 main =
-    Html.program
+    Navigation.program UrlChange
         { init = init
         , view = view
         , update = update
@@ -21,10 +21,12 @@ main =
 -- UPDATE
 
 
-init : ( Model, Cmd Msg )
-init =
+init : Navigation.Location -> ( Model, Cmd Msg )
+init location =
     { showModule = ButtonModule
     , showMenu = False
+    , showAccordion = False
+    , page = location
     }
         ! [ Cmd.none ]
 

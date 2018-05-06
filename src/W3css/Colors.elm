@@ -1,6 +1,7 @@
 module W3css.Colors
     exposing
         ( aqua
+        , black
         , blue
         , cyan
         , deepPurple
@@ -18,7 +19,7 @@ module W3css.Colors
 
 # Colors
 
-@docs aqua, blue, cyan, deepPurple, green, lightBlue, lightGreen, lime, pink, red, teal
+@docs aqua, blue, cyan, deepPurple, green, lightBlue, lightGreen, lime, pink, red, teal, black
 
 -}
 
@@ -100,3 +101,10 @@ lightGreen =
 lime : Option msg
 lime =
     ClassList ( "w3-lime", True )
+
+
+{-| Color Black
+-}
+black : Option msg
+black =
+    ClassList ( "w3-black", True )

@@ -6,6 +6,7 @@ module W3css.Button
         , circle
         , disabled
         , onClick
+        , onLinkClick
         , ripple
         )
 
@@ -14,12 +15,13 @@ module W3css.Button
 
 # Functions
 
-@docs button , block, onClick, disabled, ripple, circle, btn
+@docs button , block, onClick, disabled, ripple, circle, btn, onLinkClick
 
 -}
 
 import Html exposing (Attribute, Html, button)
-import Html.Events exposing (onClick)
+import Html.Events exposing (onClick, onWithOptions)
+import Json.Decode as Decode
 import List exposing (map)
 import W3css.Types exposing (..)
 import W3css.Utils exposing (applyOptions)
@@ -29,6 +31,18 @@ import W3css.Utils exposing (applyOptions)
 onClick : a -> Option a
 onClick msg =
     Attribute (Html.Events.onClick msg)
+
+
+{-| -}
+onLinkClick : msg -> Option msg
+onLinkClick msg =
+    Attribute
+        (onWithOptions "click"
+            { stopPropagation = True
+            , preventDefault = True
+            }
+            (Decode.succeed msg)
+        )
 
 
 {-| -}

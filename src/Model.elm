@@ -1,5 +1,7 @@
 module Model exposing (Model, ShowModule(..))
 
+import Navigation
+
 
 type ShowModule
     = ButtonModule
@@ -9,9 +11,13 @@ type ShowModule
     | CardsModule
     | TablesModule
     | MarginsModule
+    | AccordionModule
+    | AnimationsModule
 
 
 type alias Model =
     { showModule : ShowModule
     , showMenu : Bool
+    , showAccordion : Bool
+    , page : Navigation.Location
     }
