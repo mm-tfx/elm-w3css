@@ -13,13 +13,13 @@ update msg model =
             model ! []
 
         ShowButton ->
-            { model | showModule = ButtonModule } ! [ Navigation.newUrl "/buttons" ]
+            { model | showModule = ButtonModule } ! [ Navigation.newUrl (pathToPage ButtonModule) ]
 
         ShowProgress ->
             { model | showModule = ProgressModule } ! [ Navigation.newUrl "/progress" ]
 
         ShowColors ->
-            { model | showModule = Colors } ! [ Navigation.newUrl "/colors" ]
+            { model | showModule = Colors } ! [ Navigation.newUrl (pathToPage Colors) ]
 
         ShowBorders ->
             { model | showModule = BordersModule } ! []
@@ -57,5 +57,8 @@ update msg model =
                     location
                         |> Routes.pathParser
                         |> Maybe.withDefault ButtonModule
+
+                _ =
+                    Debug.log "page" page
             in
             { model | showModule = page } ! []

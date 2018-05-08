@@ -3,7 +3,7 @@ module Main exposing (..)
 import Model exposing (Animation(..), Model, ShowModule(..))
 import Msg exposing (Msg(..))
 import Navigation
-import Routes exposing (pathParser)
+import Routes exposing (pathParser, pathToPage)
 import Update exposing (update)
 import View exposing (view)
 
@@ -19,7 +19,13 @@ modelWithLocation location model =
 
 
 initialState location =
-    modelWithLocation location initialModel ! []
+    let
+        route =
+            location
+                |> pathParser
+                |> Maybe.withDefault ButtonModule
+    in
+    modelWithLocation location initialModel ! [ Navigation.newUrl (pathToPage <| route) ]
 
 
 initialModel =
