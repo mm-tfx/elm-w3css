@@ -1,5 +1,6 @@
 module Msg exposing (Msg(..))
 
+import Model exposing (..)
 import Navigation
 
 
@@ -18,3 +19,4 @@ type Msg
     | OpenAccordion
     | UrlChange Navigation.Location
     | ShowAnimations
+    | StartAnimations Animation

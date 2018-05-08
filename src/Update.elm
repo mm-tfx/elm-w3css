@@ -47,6 +47,9 @@ update msg model =
         ShowAnimations ->
             { model | showModule = AnimationsModule } ! []
 
+        StartAnimations animation ->
+            { model | animations = animation } ! []
+
         UrlChange location ->
             let
                 _ =

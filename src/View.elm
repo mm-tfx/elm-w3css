@@ -2,7 +2,7 @@ module View exposing (view)
 
 import Html exposing (Html, code, h3, i, p, pre, tbody, td, text, th, thead, tr)
 import Html.Attributes exposing (class)
-import Model exposing (Model, ShowModule(..))
+import Model exposing (Animation(..), Model, ShowModule(..))
 import Msg exposing (Msg(..))
 import SyntaxHighlight exposing (elm, gitHub, oneDark, toBlockHtml, useTheme)
 import W3css.Animations as Animations exposing (..)
@@ -281,20 +281,26 @@ accordionModule showAccordion =
     ]
 
 
-animationModule : List (Html Msg)
-animationModule =
+showAnimations show =
+    case show of
+        Top ->
+            Animations.animateTop
+
+        Bottom ->
+            Animations.animateBottom
+
+        None ->
+            Utils.class ""
+
+
+animationModule : Animation -> List (Html Msg)
+animationModule show =
     [ headerModule "Animations"
+    , Button.btn [ Button.onClick (StartAnimations Top), Colors.black ] [ text "Top" ]
+    , text " "
+    , Button.btn [ Button.onClick (StartAnimations Bottom), Colors.black ] [ text "Bottom" ]
     , Container.div [ Container.container ]
-        [ Headers.h1 [ Animations.animateTop ] [ text "Animation is fun" ]
-        ]
-    , Container.div [ Container.container ]
-        [ Headers.h1 [ Animations.animateBottom ] [ text "Animation is fun" ]
-        ]
-    , Container.div [ Container.container ]
-        [ Headers.h1 [ Animations.animateLeft ] [ text "Animation is fun" ]
-        ]
-    , Container.div [ Container.container ]
-        [ Headers.h1 [ Animations.animateRight ] [ text "Animation is fun" ]
+        [ Headers.h1 [ showAnimations show ] [ text "Animation is fun" ]
         ]
     ]
 
@@ -345,7 +351,7 @@ view model =
                         accordionModule model.showAccordion
 
                     AnimationsModule ->
-                        animationModule
+                        animationModule model.animations
                 )
             ]
         ]

@@ -1,6 +1,6 @@
 module Main exposing (..)
 
-import Model exposing (Model, ShowModule(..))
+import Model exposing (Animation(..), Model, ShowModule(..))
 import Msg exposing (Msg(..))
 import Navigation
 import Update exposing (update)
@@ -27,6 +27,7 @@ init location =
     , showMenu = False
     , showAccordion = False
     , page = location
+    , animations = None
     }
         ! [ Cmd.none ]
 

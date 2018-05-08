@@ -1,4 +1,4 @@
-module Model exposing (Model, ShowModule(..))
+module Model exposing (Animation(..), Model, ShowModule(..))
 
 import Navigation
 
@@ -15,9 +15,16 @@ type ShowModule
     | AnimationsModule
 
 
+type Animation
+    = Top
+    | Bottom
+    | None
+
+
 type alias Model =
     { showModule : ShowModule
     , showMenu : Bool
     , showAccordion : Bool
     , page : Navigation.Location
+    , animations : Animation
     }
