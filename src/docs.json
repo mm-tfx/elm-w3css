@@ -1,49 +1,5 @@
 [
   {
-    "name": "W3css.Button",
-    "comment": " Button\n\n\n# Functions\n\n@docs button , block, onClick, disabled, ripple, circle, btn\n\n",
-    "aliases": [],
-    "types": [],
-    "values": [
-      {
-        "name": "block",
-        "comment": " ",
-        "type": "W3css.Types.Option msg"
-      },
-      {
-        "name": "btn",
-        "comment": " Creates w3Css button.\nA rectangular button with a shadow hover effect.\nDefault color is black.\n\n    button [][ text \"Button\" ]\n\n",
-        "type": "List (W3css.Types.Option msg) -> List (Html.Html msg) -> Html.Html msg"
-      },
-      {
-        "name": "button",
-        "comment": " Creates w3Css button.\nA rectangular button with a gray hover effect.\nDefault color is light-gray in W3.CSS version 3.\nDefault color is inherited from parent element in version 4.\n\n    button [][ text \"Button\" ]\n\n",
-        "type": "List (W3css.Types.Option msg) -> List (Html.Html msg) -> Html.Html msg"
-      },
-      {
-        "name": "circle",
-        "comment": " ",
-        "type": "W3css.Types.Option msg"
-      },
-      {
-        "name": "disabled",
-        "comment": " When your `button` shall be disabled\n",
-        "type": "W3css.Types.Option msg"
-      },
-      {
-        "name": "onClick",
-        "comment": " ",
-        "type": "a -> W3css.Types.Option a"
-      },
-      {
-        "name": "ripple",
-        "comment": " ",
-        "type": "W3css.Types.Option msg"
-      }
-    ],
-    "generated-with-elm-version": "0.18.0"
-  },
-  {
     "name": "W3css.Margins",
     "comment": " Margins\n\n\n# Margins\n\n@docs margin, marginTop, marginRight, marginLeft, marginBottom, section\n\n",
     "aliases": [],
@@ -83,14 +39,92 @@
     "generated-with-elm-version": "0.18.0"
   },
   {
+    "name": "W3css.Responsive",
+    "comment": " Responsive Classes\n\nW3.CSS's grid system is responsive, and the columns will re-arrange automatically depending on the screen size.\n\n\n# Functions\n\n@docs half, third, twoThird\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "half",
+        "comment": " Occupies 1/2 of the window (on medium and large screens)\n\n    Container.div [ Responsive.half ]\n      [ text \"I use half of the window\" ]\n\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "third",
+        "comment": " Occupies 1/3 of the window (on medium and large screens)\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "twoThird",
+        "comment": " Occupies 2/3 of the window (on medium and large screens)\n",
+        "type": "W3css.Types.Option msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "W3css.Button",
+    "comment": " Button\n\n\n# Functions\n\n@docs button , block, onClick, disabled, ripple, circle, btn, onLinkClick\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "block",
+        "comment": " ",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "btn",
+        "comment": " Creates w3Css button.\nA rectangular button with a shadow hover effect.\nDefault color is black.\n\n    button [][ text \"Button\" ]\n\n",
+        "type": "List (W3css.Types.Option msg) -> List (Html.Html msg) -> Html.Html msg"
+      },
+      {
+        "name": "button",
+        "comment": " Creates w3Css button.\nA rectangular button with a gray hover effect.\nDefault color is light-gray in W3.CSS version 3.\nDefault color is inherited from parent element in version 4.\n\n    button [][ text \"Button\" ]\n\n",
+        "type": "List (W3css.Types.Option msg) -> List (Html.Html msg) -> Html.Html msg"
+      },
+      {
+        "name": "circle",
+        "comment": " ",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "disabled",
+        "comment": " When your `button` shall be disabled\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "onClick",
+        "comment": " ",
+        "type": "a -> W3css.Types.Option a"
+      },
+      {
+        "name": "onLinkClick",
+        "comment": " ",
+        "type": "msg -> W3css.Types.Option msg"
+      },
+      {
+        "name": "ripple",
+        "comment": " ",
+        "type": "W3css.Types.Option msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
     "name": "W3css.Colors",
-    "comment": " This library provides W3css colors.\n\n\n# Colors\n\n@docs aqua, blue, cyan, deepPurple, green, lightBlue, lightGreen, lime, pink, red, teal\n\n",
+    "comment": " This library provides W3css colors.\n\n\n# Colors\n\n@docs aqua, blue, cyan, deepPurple, green, lightBlue, lightGreen, lime, pink, red, teal, black\n\n",
     "aliases": [],
     "types": [],
     "values": [
       {
         "name": "aqua",
         "comment": " Color Aqua\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "black",
+        "comment": " Color Black\n",
         "type": "W3css.Types.Option msg"
       },
       {
@@ -141,6 +175,55 @@
       {
         "name": "teal",
         "comment": " Color Teal\n",
+        "type": "W3css.Types.Option msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "W3css.Animations",
+    "comment": " This library provides W3css Animations\n\n\n# Animations\n\n@docs animateTop, animateBottom, animateLeft, animateRight, animateOpacity, animateZoom, animateFading, animateSpin\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "animateBottom",
+        "comment": " Slides in an element from the bottom (-300px to 0)\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "animateFading",
+        "comment": " Animates an element's opacity from 0 to 1 and 1 to 0 (fades in + fade out)\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "animateLeft",
+        "comment": " Slides in an element from the left (-300px to 0)\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "animateOpacity",
+        "comment": " Animates an element's opacity from 0 to 1 in 1.5 seconds\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "animateRight",
+        "comment": " Slides in an element from the right (-300px to 0)\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "animateSpin",
+        "comment": " Spins an element 360 degrees\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "animateTop",
+        "comment": " Slides in an element from the top (-300px to 0)\n",
+        "type": "W3css.Types.Option msg"
+      },
+      {
+        "name": "animateZoom",
+        "comment": " Animates an element from 0 to 100% in size\n",
         "type": "W3css.Types.Option msg"
       }
     ],

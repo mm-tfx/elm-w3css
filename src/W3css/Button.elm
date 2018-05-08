@@ -68,7 +68,7 @@ button options children =
 A rectangular button with a shadow hover effect.
 Default color is black.
 
-    button [][ text "Button" ]
+    btn [][ text "Button" ]
 
 -}
 btn : List (Option msg) -> List (Html msg) -> Html msg

@@ -13,6 +13,10 @@ import W3css.Types exposing (Option(..))
 
 
 {-| Slides in an element from the top (-300px to 0)
+
+    Container.div [Animations.animateTop]
+      [ text "Slides from the top"]
+
 -}
 animateTop : Option msg
 animateTop =

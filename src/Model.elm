@@ -1,6 +1,7 @@
 module Model exposing (Animation(..), Model, ShowModule(..))
 
 import Navigation
+import UrlParser
 
 
 type ShowModule
@@ -18,6 +19,12 @@ type ShowModule
 type Animation
     = Top
     | Bottom
+    | Left
+    | Right
+    | Opacity
+    | Zoom
+    | Fading
+    | Spin
     | None
 
 
@@ -25,6 +32,5 @@ type alias Model =
     { showModule : ShowModule
     , showMenu : Bool
     , showAccordion : Bool
-    , page : Navigation.Location
     , animations : Animation
     }

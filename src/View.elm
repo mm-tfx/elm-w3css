@@ -28,6 +28,7 @@ import W3css.Container as Container exposing (div, panel)
 import W3css.Css as Css exposing (w3css)
 import W3css.Headers as Headers exposing (..)
 import W3css.Margins as Margins exposing (marginBottom)
+import W3css.Responsive as Responsive exposing (half, third, twoThird)
 import W3css.Round as Round exposing (round, roundLarge, roundSmall, roundXLarge, roundXXLarge)
 import W3css.Size as Size exposing (..)
 import W3css.Tables as Tables exposing (..)
@@ -281,6 +282,7 @@ accordionModule showAccordion =
     ]
 
 
+showAnimations : Animation -> Option msg
 showAnimations show =
     case show of
         Top ->
@@ -288,6 +290,24 @@ showAnimations show =
 
         Bottom ->
             Animations.animateBottom
+
+        Left ->
+            Animations.animateLeft
+
+        Right ->
+            Animations.animateRight
+
+        Opacity ->
+            Animations.animateOpacity
+
+        Zoom ->
+            Animations.animateZoom
+
+        Fading ->
+            Animations.animateFading
+
+        Spin ->
+            Animations.animateSpin
 
         None ->
             Utils.class ""
@@ -299,6 +319,18 @@ animationModule show =
     , Button.btn [ Button.onClick (StartAnimations Top), Colors.black ] [ text "Top" ]
     , text " "
     , Button.btn [ Button.onClick (StartAnimations Bottom), Colors.black ] [ text "Bottom" ]
+    , text " "
+    , Button.btn [ Button.onClick (StartAnimations Left), Colors.black ] [ text "Left" ]
+    , text " "
+    , Button.btn [ Button.onClick (StartAnimations Right), Colors.black ] [ text "Right" ]
+    , text " "
+    , Button.btn [ Button.onClick (StartAnimations Zoom), Colors.black ] [ text "Zoom" ]
+    , text " "
+    , Button.btn [ Button.onClick (StartAnimations Opacity), Colors.black ] [ text "Opacity" ]
+    , text " "
+    , Button.btn [ Button.onClick (StartAnimations Fading), Colors.black ] [ text "Fading" ]
+    , text " "
+    , Button.btn [ Button.onClick (StartAnimations Spin), Colors.black ] [ text "Spin" ]
     , Container.div [ Container.container ]
         [ Headers.h1 [ showAnimations show ] [ text "Animation is fun" ]
         ]

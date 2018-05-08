@@ -1,8 +1,13 @@
 module W3css.Utils exposing (..)
 
-import Html exposing (Attribute)
+import Html exposing (Attribute, Html)
 import Html.Attributes exposing (classList)
 import W3css.Types exposing (Option(..))
+
+
+node : String -> String -> List (Option msg) -> List (Html msg) -> Html msg
+node string class options children =
+    Html.node string (applyOptions (initialClass class :: options)) children
 
 
 style : List ( String, String ) -> Option msg
@@ -33,6 +38,7 @@ takeClassListValue option =
             ( "", False )
 
 
+fetchClassName : Option msg -> String
 fetchClassName option =
     case option of
         Class val ->
@@ -94,6 +100,7 @@ isClassList option =
             False
 
 
+isClass : Option msg -> Bool
 isClass option =
     case option of
         ClassList _ ->

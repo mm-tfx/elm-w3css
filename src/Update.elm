@@ -3,6 +3,7 @@ module Update exposing (update)
 import Model exposing (Model, ShowModule(..))
 import Msg exposing (Msg(..))
 import Navigation
+import Routes exposing (..)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -52,7 +53,9 @@ update msg model =
 
         UrlChange location ->
             let
-                _ =
-                    Debug.log "location" location
+                page =
+                    location
+                        |> Routes.pathParser
+                        |> Maybe.withDefault ButtonModule
             in
-            model ! []
+            { model | showModule = page } ! []
