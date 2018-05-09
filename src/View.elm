@@ -1,7 +1,7 @@
 module View exposing (view)
 
 import Html exposing (Html, code, h3, i, p, pre, tbody, td, text, th, thead, tr)
-import Html.Attributes exposing (class)
+import Html.Attributes exposing (class, href)
 import Model exposing (Animation(..), Model, ShowModule(..))
 import Msg exposing (Msg(..))
 import SyntaxHighlight exposing (elm, gitHub, oneDark, toBlockHtml, useTheme)
@@ -28,6 +28,7 @@ import W3css.Container as Container exposing (div, panel)
 import W3css.Css as Css exposing (w3css)
 import W3css.Headers as Headers exposing (..)
 import W3css.Margins as Margins exposing (marginBottom)
+import W3css.Navigation as Navigation exposing (a)
 import W3css.Responsive as Responsive exposing (half, third, twoThird)
 import W3css.Round as Round exposing (round, roundLarge, roundSmall, roundXLarge, roundXXLarge)
 import W3css.Size as Size exposing (..)
@@ -344,10 +345,10 @@ view model =
         , useTheme gitHub
         , Container.div [ showMenu model.showMenu, Bar.sideBar, Bar.barBlock, Utils.style [ ( "width", "15%" ) ], Utils.class "w3-collapse", Cards.card ]
             [ Button.button [ Bar.barItem, Utils.class "w3-hide-large", Button.onClick CloseMenu ] [ text "Close" ]
-            , Button.button [ Bar.barItem, Button.onClick ShowColors ] [ text "Colors" ]
-            , Button.button [ Bar.barItem, Button.onClick ShowButton ] [ text "Button" ]
-            , Button.button [ Bar.barItem, Button.onClick ShowProgress ] [ text "Progress" ]
-            , Button.button [ Bar.barItem, Button.onClick ShowBorders ] [ text "Borders" ]
+            , Navigation.a [ Utils.href "/colors", Bar.barItem, Button.onLinkClick ShowColors, Utils.class "w3-button" ] [ text "Colors" ]
+            , Navigation.a [ Utils.href "/buttons", Bar.barItem, Button.onLinkClick ShowButton, Utils.class "w3-button" ] [ text "Button" ]
+            , Button.button [ Bar.barItem, Button.onLinkClick ShowProgress ] [ text "Progress" ]
+            , Button.button [ Bar.barItem, Button.onLinkClick ShowBorders ] [ text "Borders" ]
             , Button.button [ Bar.barItem, Button.onClick ShowCards ] [ text "Cards" ]
             , Button.button [ Bar.barItem, Button.onClick ShowTables ] [ text "Tables" ]
             , Button.button [ Bar.barItem, Button.onClick ShowMargins ] [ text "Margins" ]
@@ -358,6 +359,12 @@ view model =
         , Container.div [ Utils.style [ ( "margin-left", "15%" ) ] ]
             [ Container.div [ Container.container ]
                 (case model.showModule of
+                    Home ->
+                        [ Container.div [ Container.container ]
+                            [ headerModule "Elm for W3css"
+                            ]
+                        ]
+
                     ButtonModule ->
                         buttonModule
 

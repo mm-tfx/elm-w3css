@@ -13,7 +13,10 @@ modelWithLocation location model =
         page =
             location
                 |> pathParser
-                |> Maybe.withDefault ButtonModule
+                |> Maybe.withDefault Home
+
+        _ =
+            Debug.log "modelWithLocation" page
     in
     { model | showModule = page }
 
@@ -23,13 +26,16 @@ initialState location =
         route =
             location
                 |> pathParser
-                |> Maybe.withDefault ButtonModule
+                |> Maybe.withDefault Home
+
+        _ =
+            Debug.log "route" route
     in
-    modelWithLocation location initialModel ! [ Navigation.newUrl (pathToPage <| route) ]
+    modelWithLocation location initialModel ! []
 
 
 initialModel =
-    { showModule = ButtonModule
+    { showModule = Home
     , showMenu = False
     , showAccordion = False
     , animations = None
@@ -48,7 +54,7 @@ main =
 
 init : Navigation.Location -> ( Model, Cmd Msg )
 init location =
-    { showModule = ButtonModule
+    { showModule = Home
     , showMenu = False
     , showAccordion = False
     , animations = None

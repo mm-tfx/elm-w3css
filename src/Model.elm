@@ -5,7 +5,8 @@ import UrlParser
 
 
 type ShowModule
-    = ButtonModule
+    = Home
+    | ButtonModule
     | ProgressModule
     | Colors
     | BordersModule

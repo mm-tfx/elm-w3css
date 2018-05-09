@@ -20,6 +20,11 @@ class className =
     Attribute (Html.Attributes.class className)
 
 
+href : String -> Option msg
+href location =
+    Attribute (Html.Attributes.href location)
+
+
 initialClass : String -> Option msg
 initialClass className =
     ClassList ( className, True )
