@@ -17239,6 +17239,7 @@ var _user$project$Model$BordersModule = {ctor: 'BordersModule'};
 var _user$project$Model$Colors = {ctor: 'Colors'};
 var _user$project$Model$ProgressModule = {ctor: 'ProgressModule'};
 var _user$project$Model$ButtonModule = {ctor: 'ButtonModule'};
+var _user$project$Model$Home = {ctor: 'Home'};
 var _user$project$Model$None = {ctor: 'None'};
 var _user$project$Model$Spin = {ctor: 'Spin'};
 var _user$project$Model$Fading = {ctor: 'Fading'};
@@ -17269,6 +17270,108 @@ var _user$project$Msg$ShowProgress = {ctor: 'ShowProgress'};
 var _user$project$Msg$ShowButton = {ctor: 'ShowButton'};
 var _user$project$Msg$NoOp = {ctor: 'NoOp'};
 
+var _user$project$Routes$pathToPage = function (page) {
+	var _p0 = page;
+	switch (_p0.ctor) {
+		case 'Home':
+			return '/';
+		case 'ButtonModule':
+			return '/buttons';
+		case 'Colors':
+			return '/colors';
+		case 'ProgressModule':
+			return '/progress';
+		case 'BordersModule':
+			return '/borders';
+		case 'CardsModule':
+			return '/cards';
+		case 'TablesModule':
+			return '/tables';
+		case 'MarginsModule':
+			return '/margins';
+		case 'AccordionModule':
+			return '/accordion';
+		default:
+			return '/animations';
+	}
+};
+var _user$project$Routes$pageParser = _evancz$url_parser$UrlParser$oneOf(
+	{
+		ctor: '::',
+		_0: A2(
+			_evancz$url_parser$UrlParser$map,
+			_user$project$Model$Home,
+			_evancz$url_parser$UrlParser$s('')),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_evancz$url_parser$UrlParser$map,
+				_user$project$Model$ButtonModule,
+				_evancz$url_parser$UrlParser$s('buttons')),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_evancz$url_parser$UrlParser$map,
+					_user$project$Model$Colors,
+					_evancz$url_parser$UrlParser$s('colors')),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_evancz$url_parser$UrlParser$map,
+						_user$project$Model$ProgressModule,
+						_evancz$url_parser$UrlParser$s('progress')),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_evancz$url_parser$UrlParser$map,
+							_user$project$Model$BordersModule,
+							_evancz$url_parser$UrlParser$s('borders')),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_evancz$url_parser$UrlParser$map,
+								_user$project$Model$CardsModule,
+								_evancz$url_parser$UrlParser$s('cards')),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_evancz$url_parser$UrlParser$map,
+									_user$project$Model$TablesModule,
+									_evancz$url_parser$UrlParser$s('tables')),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_evancz$url_parser$UrlParser$map,
+										_user$project$Model$MarginsModule,
+										_evancz$url_parser$UrlParser$s('margins')),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_evancz$url_parser$UrlParser$map,
+											_user$project$Model$AccordionModule,
+											_evancz$url_parser$UrlParser$s('accordion')),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_evancz$url_parser$UrlParser$map,
+												_user$project$Model$AnimationsModule,
+												_evancz$url_parser$UrlParser$s('animations')),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+var _user$project$Routes$pathParser = function (location) {
+	var _p1 = A2(_elm_lang$core$Debug$log, 'location', location);
+	return A2(_evancz$url_parser$UrlParser$parsePath, _user$project$Routes$pageParser, location);
+};
+
 var _user$project$Update$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
@@ -17286,7 +17389,8 @@ var _user$project$Update$update = F2(
 						{showModule: _user$project$Model$ButtonModule}),
 					{
 						ctor: '::',
-						_0: _elm_lang$navigation$Navigation$newUrl('/buttons'),
+						_0: _elm_lang$navigation$Navigation$newUrl(
+							_user$project$Routes$pathToPage(_user$project$Model$ButtonModule)),
 						_1: {ctor: '[]'}
 					});
 			case 'ShowProgress':
@@ -17297,7 +17401,8 @@ var _user$project$Update$update = F2(
 						{showModule: _user$project$Model$ProgressModule}),
 					{
 						ctor: '::',
-						_0: _elm_lang$navigation$Navigation$newUrl('/progress'),
+						_0: _elm_lang$navigation$Navigation$newUrl(
+							_user$project$Routes$pathToPage(_user$project$Model$ProgressModule)),
 						_1: {ctor: '[]'}
 					});
 			case 'ShowColors':
@@ -17308,7 +17413,8 @@ var _user$project$Update$update = F2(
 						{showModule: _user$project$Model$Colors}),
 					{
 						ctor: '::',
-						_0: _elm_lang$navigation$Navigation$newUrl('/colors'),
+						_0: _elm_lang$navigation$Navigation$newUrl(
+							_user$project$Routes$pathToPage(_user$project$Model$Colors)),
 						_1: {ctor: '[]'}
 					});
 			case 'ShowBorders':
@@ -17317,28 +17423,48 @@ var _user$project$Update$update = F2(
 					_elm_lang$core$Native_Utils.update(
 						model,
 						{showModule: _user$project$Model$BordersModule}),
-					{ctor: '[]'});
+					{
+						ctor: '::',
+						_0: _elm_lang$navigation$Navigation$newUrl(
+							_user$project$Routes$pathToPage(_user$project$Model$BordersModule)),
+						_1: {ctor: '[]'}
+					});
 			case 'ShowCards':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
 						{showModule: _user$project$Model$CardsModule}),
-					{ctor: '[]'});
+					{
+						ctor: '::',
+						_0: _elm_lang$navigation$Navigation$newUrl(
+							_user$project$Routes$pathToPage(_user$project$Model$CardsModule)),
+						_1: {ctor: '[]'}
+					});
 			case 'ShowTables':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
 						{showModule: _user$project$Model$TablesModule}),
-					{ctor: '[]'});
+					{
+						ctor: '::',
+						_0: _elm_lang$navigation$Navigation$newUrl(
+							_user$project$Routes$pathToPage(_user$project$Model$TablesModule)),
+						_1: {ctor: '[]'}
+					});
 			case 'ShowMargins':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
 						{showModule: _user$project$Model$MarginsModule}),
-					{ctor: '[]'});
+					{
+						ctor: '::',
+						_0: _elm_lang$navigation$Navigation$newUrl(
+							_user$project$Routes$pathToPage(_user$project$Model$MarginsModule)),
+						_1: {ctor: '[]'}
+					});
 			case 'CloseMenu':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
@@ -17359,7 +17485,12 @@ var _user$project$Update$update = F2(
 					_elm_lang$core$Native_Utils.update(
 						model,
 						{showModule: _user$project$Model$AccordionModule}),
-					{ctor: '[]'});
+					{
+						ctor: '::',
+						_0: _elm_lang$navigation$Navigation$newUrl(
+							_user$project$Routes$pathToPage(_user$project$Model$AccordionModule)),
+						_1: {ctor: '[]'}
+					});
 			case 'OpenAccordion':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
@@ -17373,7 +17504,12 @@ var _user$project$Update$update = F2(
 					_elm_lang$core$Native_Utils.update(
 						model,
 						{showModule: _user$project$Model$AnimationsModule}),
-					{ctor: '[]'});
+					{
+						ctor: '::',
+						_0: _elm_lang$navigation$Navigation$newUrl(
+							_user$project$Routes$pathToPage(_user$project$Model$AnimationsModule)),
+						_1: {ctor: '[]'}
+					});
 			case 'StartAnimations':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
@@ -17382,10 +17518,16 @@ var _user$project$Update$update = F2(
 						{animations: _p0._0}),
 					{ctor: '[]'});
 			default:
-				var _p1 = A2(_elm_lang$core$Debug$log, 'location', _p0._0);
+				var page = A2(
+					_elm_lang$core$Maybe$withDefault,
+					_user$project$Model$Home,
+					_user$project$Routes$pathParser(_p0._0));
+				var _p1 = A2(_elm_lang$core$Debug$log, 'UrlChange', page);
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
-					model,
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{showModule: page}),
 					{ctor: '[]'});
 		}
 	});
@@ -17518,6 +17660,10 @@ var _user$project$W3css_Utils$applyOptions = function (options) {
 var _user$project$W3css_Utils$initialClass = function (className) {
 	return _user$project$W3css_Types$ClassList(
 		{ctor: '_Tuple2', _0: className, _1: true});
+};
+var _user$project$W3css_Utils$href = function (location) {
+	return _user$project$W3css_Types$Attribute(
+		_elm_lang$html$Html_Attributes$href(location));
 };
 var _user$project$W3css_Utils$class = function (className) {
 	return _user$project$W3css_Types$Attribute(
@@ -17730,6 +17876,14 @@ var _user$project$W3css_Margins$marginTop = _user$project$W3css_Types$ClassList(
 	{ctor: '_Tuple2', _0: 'w3-margin-top', _1: true});
 var _user$project$W3css_Margins$margin = _user$project$W3css_Types$ClassList(
 	{ctor: '_Tuple2', _0: 'w3-margin', _1: true});
+
+var _user$project$W3css_Navigation$a = F2(
+	function (options, children) {
+		return A2(
+			_elm_lang$html$Html$a,
+			_user$project$W3css_Utils$applyOptions(options),
+			children);
+	});
 
 var _user$project$W3css_Responsive$twoThird = _user$project$W3css_Types$ClassList(
 	{ctor: '_Tuple2', _0: 'w3-twothird', _1: true});
@@ -19459,14 +19613,22 @@ var _user$project$View$view = function (model) {
 							_1: {
 								ctor: '::',
 								_0: A2(
-									_user$project$W3css_Button$button,
+									_user$project$W3css_Navigation$a,
 									{
 										ctor: '::',
-										_0: _user$project$W3css_Bar$barItem,
+										_0: _user$project$W3css_Utils$href('/colors'),
 										_1: {
 											ctor: '::',
-											_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowColors),
-											_1: {ctor: '[]'}
+											_0: _user$project$W3css_Bar$barItem,
+											_1: {
+												ctor: '::',
+												_0: _user$project$W3css_Button$onLinkClick(_user$project$Msg$ShowColors),
+												_1: {
+													ctor: '::',
+													_0: _user$project$W3css_Utils$class('w3-button'),
+													_1: {ctor: '[]'}
+												}
+											}
 										}
 									},
 									{
@@ -19477,14 +19639,22 @@ var _user$project$View$view = function (model) {
 								_1: {
 									ctor: '::',
 									_0: A2(
-										_user$project$W3css_Button$button,
+										_user$project$W3css_Navigation$a,
 										{
 											ctor: '::',
-											_0: _user$project$W3css_Bar$barItem,
+											_0: _user$project$W3css_Utils$href('/buttons'),
 											_1: {
 												ctor: '::',
-												_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowButton),
-												_1: {ctor: '[]'}
+												_0: _user$project$W3css_Bar$barItem,
+												_1: {
+													ctor: '::',
+													_0: _user$project$W3css_Button$onLinkClick(_user$project$Msg$ShowButton),
+													_1: {
+														ctor: '::',
+														_0: _user$project$W3css_Utils$class('w3-button'),
+														_1: {ctor: '[]'}
+													}
+												}
 											}
 										},
 										{
@@ -19501,7 +19671,7 @@ var _user$project$View$view = function (model) {
 												_0: _user$project$W3css_Bar$barItem,
 												_1: {
 													ctor: '::',
-													_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowProgress),
+													_0: _user$project$W3css_Button$onLinkClick(_user$project$Msg$ShowProgress),
 													_1: {ctor: '[]'}
 												}
 											},
@@ -19519,7 +19689,7 @@ var _user$project$View$view = function (model) {
 													_0: _user$project$W3css_Bar$barItem,
 													_1: {
 														ctor: '::',
-														_0: _user$project$W3css_Button$onClick(_user$project$Msg$ShowBorders),
+														_0: _user$project$W3css_Button$onLinkClick(_user$project$Msg$ShowBorders),
 														_1: {ctor: '[]'}
 													}
 												},
@@ -19669,6 +19839,23 @@ var _user$project$View$view = function (model) {
 										function () {
 											var _p1 = model.showModule;
 											switch (_p1.ctor) {
+												case 'Home':
+													return {
+														ctor: '::',
+														_0: A2(
+															_user$project$W3css_Container$div,
+															{
+																ctor: '::',
+																_0: _user$project$W3css_Container$container,
+																_1: {ctor: '[]'}
+															},
+															{
+																ctor: '::',
+																_0: _user$project$View$headerModule('Elm for W3css'),
+																_1: {ctor: '[]'}
+															}),
+														_1: {ctor: '[]'}
+													};
 												case 'ButtonModule':
 													return _user$project$View$buttonModule;
 												case 'ProgressModule':
@@ -19712,51 +19899,31 @@ var _user$project$Main$subscriptions = function (model) {
 var _user$project$Main$init = function (location) {
 	return A2(
 		_elm_lang$core$Platform_Cmd_ops['!'],
-		{showModule: _user$project$Model$ButtonModule, showMenu: false, showAccordion: false, animations: _user$project$Model$None},
+		{showModule: _user$project$Model$Home, showMenu: false, showAccordion: false, animations: _user$project$Model$None},
 		{
 			ctor: '::',
 			_0: _elm_lang$core$Platform_Cmd$none,
 			_1: {ctor: '[]'}
 		});
 };
-var _user$project$Main$initialModel = {showModule: _user$project$Model$ButtonModule, showMenu: false, showAccordion: false, animations: _user$project$Model$None};
-var _user$project$Main$pageParser = _evancz$url_parser$UrlParser$oneOf(
-	{
-		ctor: '::',
-		_0: A2(
-			_evancz$url_parser$UrlParser$map,
-			_user$project$Model$ButtonModule,
-			_evancz$url_parser$UrlParser$s('buttons')),
-		_1: {
-			ctor: '::',
-			_0: A2(
-				_evancz$url_parser$UrlParser$map,
-				_user$project$Model$Colors,
-				_evancz$url_parser$UrlParser$s('colors')),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_evancz$url_parser$UrlParser$map,
-					_user$project$Model$ProgressModule,
-					_evancz$url_parser$UrlParser$s('progress')),
-				_1: {ctor: '[]'}
-			}
-		}
-	});
-var _user$project$Main$pathParser = function (location) {
-	return A2(_evancz$url_parser$UrlParser$parsePath, _user$project$Main$pageParser, location);
-};
+var _user$project$Main$initialModel = {showModule: _user$project$Model$Home, showMenu: false, showAccordion: false, animations: _user$project$Model$None};
 var _user$project$Main$modelWithLocation = F2(
 	function (location, model) {
 		var page = A2(
 			_elm_lang$core$Maybe$withDefault,
-			_user$project$Model$ButtonModule,
-			_user$project$Main$pathParser(location));
+			_user$project$Model$Home,
+			_user$project$Routes$pathParser(location));
+		var _p0 = A2(_elm_lang$core$Debug$log, 'modelWithLocation', page);
 		return _elm_lang$core$Native_Utils.update(
 			model,
 			{showModule: page});
 	});
 var _user$project$Main$initialState = function (location) {
+	var route = A2(
+		_elm_lang$core$Maybe$withDefault,
+		_user$project$Model$Home,
+		_user$project$Routes$pathParser(location));
+	var _p1 = A2(_elm_lang$core$Debug$log, 'route', route);
 	return A2(
 		_elm_lang$core$Platform_Cmd_ops['!'],
 		A2(_user$project$Main$modelWithLocation, location, _user$project$Main$initialModel),
